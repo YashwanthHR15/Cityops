@@ -1,0 +1,17 @@
+
+{
+  "name": "dsu",
+  "version": "1.0.0",
+  "description": "- `index.html` — Home page (banner/tagline/description pulled from `GET /site-content`) - `complaint.html` — Register a Complaint form (your main deliverable) - `track.html` — placeholder only, so nav links don't 404 before Member D ships the real one - `style.css` — shared styling, Vidhana Soudha background + glass panels - `api.js` — all API calls in one place; **edit `API_BASE` at the top** - `assets/` — put your background photo here",
+  "main": "api.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "vite": "^8.2.2"
+  }
+}

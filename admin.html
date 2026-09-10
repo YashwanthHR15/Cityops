@@ -1,0 +1,2595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | Indian Government</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #102a56;
+}
+
+/* ================= HEADER ================= */
+
+header {
+    height: 82px;
+    background: white;
+    border-bottom: 1px solid #e0e6ef;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.emblem {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #edf4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.brand h2 {
+    font-size: 21px;
+}
+
+.brand p {
+    color: #71819a;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.admin-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.admin-text {
+    text-align: right;
+}
+
+.admin-text strong {
+    display: block;
+}
+
+.admin-text span {
+    color: #71819a;
+    font-size: 12px;
+}
+
+.admin-avatar {
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    background: #edf4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-btn {
+    border: none;
+    background: #fff0f0;
+    color: #d33131;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ================= MAIN ================= */
+
+.container {
+    width: 92%;
+    max-width: 1400px;
+    margin: 35px auto 60px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.page-header h1 {
+    font-size: 30px;
+    margin-bottom: 6px;
+}
+
+.page-header p {
+    color: #687b96;
+}
+
+.notification-count {
+    background: white;
+    border: 1px solid #dce5ef;
+    border-radius: 10px;
+    padding: 13px 18px;
+    color: #135fb9;
+    font-weight: bold;
+}
+
+/* ================= STATISTICS ================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid #e0e7ef;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 5px 18px rgba(20, 50, 90, 0.05);
+}
+
+.stat-card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-card h2 {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.stat-card p {
+    color: #71819a;
+    font-size: 14px;
+}
+
+.stat-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 10px;
+    background: #edf4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+/* ================= COMPLAINT MANAGEMENT ================= */
+
+.management {
+    background: white;
+    border: 1px solid #dfe6ef;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.management-header {
+    padding: 22px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e4eaf1;
+}
+
+.management-header h2 {
+    font-size: 21px;
+}
+
+.search {
+    width: 280px;
+    padding: 11px 14px;
+    border: 1px solid #d5dfeb;
+    border-radius: 8px;
+    outline: none;
+}
+
+.search:focus {
+    border-color: #1769d5;
+}
+
+/* ================= FILTER ================= */
+
+.filters {
+    padding: 16px 25px;
+    border-bottom: 1px solid #e6ebf2;
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: white;
+    border: 1px solid #d7e1ed;
+    color: #566d8d;
+    padding: 9px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.filter-btn.active {
+    background: #1769d5;
+    color: white;
+    border-color: #1769d5;
+}
+
+/* ================= TABLE ================= */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 950px;
+}
+
+th {
+    background: #f8faff;
+    color: #536987;
+    text-align: left;
+    padding: 15px 20px;
+    font-size: 13px;
+    border-bottom: 1px solid #e1e8f0;
+}
+
+td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #edf1f5;
+    font-size: 14px;
+}
+
+.complaint-id {
+    color: #1260bf;
+    font-weight: bold;
+}
+
+.location-text {
+    color: #687b94;
+}
+
+.view-btn {
+    border: none;
+    background: #eaf3ff;
+    color: #1261c4;
+    padding: 8px 13px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ================= STATUS ================= */
+
+.status {
+    display: inline-block;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-registered {
+    background: #fff4d9;
+    color: #a16b00;
+}
+
+.status-progress {
+    background: #e7f1ff;
+    color: #1765bd;
+}
+
+.status-review {
+    background: #fff0df;
+    color: #bd6a00;
+}
+
+.status-approved {
+    background: #dff7e8;
+    color: #08753b;
+}
+
+.status-improvement {
+    background: #fff0df;
+    color: #b96700;
+}
+
+/* ================= MODAL ================= */
+
+.modal-background {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 25, 50, 0.65);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 500;
+}
+
+.modal-background.show {
+    display: flex;
+}
+
+.modal {
+    width: 100%;
+    max-width: 760px;
+    max-height: 92vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 18px;
+    padding: 28px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 23px;
+}
+
+.modal-header h2 {
+    font-size: 24px;
+}
+
+.close-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: #eef2f6;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* ================= DETAILS ================= */
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.detail {
+    background: #f7f9fc;
+    padding: 14px;
+    border-radius: 9px;
+}
+
+.detail label {
+    display: block;
+    color: #71819a;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.detail strong {
+    color: #102a56;
+}
+
+.description-box {
+    background: #f7f9fc;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 23px;
+}
+
+.description-box label {
+    display: block;
+    color: #71819a;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+/* =====================================================
+   COMPLAINT EVIDENCE
+===================================================== */
+
+.evidence-section {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 22px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
+.evidence-section > h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #102d5c;
+}
+
+.evidence-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.evidence-card {
+    background: #f7f9fc;
+    border: 1px solid #dfe7ef;
+    border-radius: 13px;
+    padding: 13px;
+}
+
+.evidence-card.before {
+    border-top: 4px solid #dc3545;
+}
+
+.evidence-card.after {
+    border-top: 4px solid #198754;
+}
+
+.evidence-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 11px;
+}
+
+.before .evidence-title {
+    color: #dc3545;
+}
+
+.after .evidence-title {
+    color: #198754;
+}
+
+.photo-box {
+    width: 100%;
+    height: 190px;
+    background: #eaf0f6;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #71829a;
+}
+
+.photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    display: none;
+}
+
+.photo-placeholder {
+    padding: 15px;
+    font-size: 14px;
+}
+
+.photo-placeholder .icon {
+    display: block;
+    font-size: 35px;
+    margin-bottom: 8px;
+}
+
+.image-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.view-image-btn {
+    width: 100%;
+    border: none;
+    background: #eaf3ff;
+    color: #1261c4;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.photo-caption {
+    text-align: center;
+    margin-top: 9px;
+    color: #71819a;
+    font-size: 12px;
+}
+
+/* ================= WORKER RESOLUTION ================= */
+
+.worker-resolution {
+    background: #eef7ff;
+    border-left: 4px solid #1769d5;
+    padding: 17px;
+    border-radius: 9px;
+    margin-bottom: 23px;
+}
+
+.worker-resolution h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.worker-resolution p {
+    color: #536a88;
+    line-height: 1.6;
+}
+
+/* ================= ADMIN DECISION ================= */
+
+.admin-decision {
+    border-top: 1px solid #e1e7ef;
+    padding-top: 22px;
+}
+
+.admin-decision h3 {
+    margin-bottom: 14px;
+}
+
+.decision-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.approve-btn,
+.improvement-btn {
+    flex: 1;
+    padding: 13px;
+    border: none;
+    border-radius: 9px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.approve-btn {
+    background: #16834a;
+}
+
+.improvement-btn {
+    background: #ef8a20;
+}
+
+.reason-area {
+    display: none;
+    margin-top: 15px;
+}
+
+.reason-area.show {
+    display: block;
+}
+
+.reason-area textarea {
+    width: 100%;
+    min-height: 100px;
+    resize: vertical;
+    border: 1px solid #d3deea;
+    border-radius: 8px;
+    padding: 12px;
+    font-family: inherit;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+.send-back-btn {
+    border: none;
+    background: #ef8a20;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+/* ================= SUCCESS ================= */
+
+.message {
+    display: none;
+    padding: 13px;
+    border-radius: 9px;
+    margin-bottom: 17px;
+    font-weight: bold;
+}
+
+.message.show {
+    display: block;
+}
+
+.message.success {
+    background: #e2f7e9;
+    color: #08753b;
+}
+
+.message.warning {
+    background: #fff2df;
+    color: #ad6500;
+}
+
+/* ================= IMAGE VIEWER ================= */
+
+.image-viewer {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.88);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.image-viewer.show {
+    display: flex;
+}
+
+.image-viewer img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.close-image {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    color: #102a56;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* ================= EMPTY ================= */
+
+.empty {
+    text-align: center;
+    padding: 55px;
+    color: #71819a;
+}
+
+.empty-icon {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 900px) {
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    header {
+        padding: 0 25px;
+    }
+}
+
+@media(max-width: 650px) {
+
+    header {
+        padding: 15px;
+        height: auto;
+    }
+
+    .admin-text {
+        display: none;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    .page-header {
+        display: block;
+    }
+
+    .notification-count {
+        display: inline-block;
+        margin-top: 15px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .details-grid,
+    .evidence-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .management-header {
+        display: block;
+    }
+
+    .search {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .decision-buttons {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="brand">
+
+        <div class="emblem">
+            🇮🇳
+        </div>
+
+        <div>
+            <h2>Indian Government</h2>
+            <p>Citizens First • Cleaner Cities • Stronger India</p>
+        </div>
+
+    </div>
+
+
+    <div class="admin-area">
+
+        <div class="admin-text">
+            <strong>Administrator</strong>
+            <span>Higher Authority</span>
+        </div>
+
+        <div class="admin-avatar">
+            👤
+        </div>
+
+        <button
+            class="logout-btn"
+            onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+    <div class="page-header">
+
+        <div>
+            <h1>Admin Dashboard</h1>
+
+            <p>
+                Review, verify and approve citizen complaint resolutions.
+            </p>
+        </div>
+
+        <div class="notification-count">
+            🔔
+            <span id="notificationCount">0</span>
+            Public Notifications
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         STATISTICS
+    ================================================== -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-card-content">
+
+                <div>
+                    <h2 id="registeredCount">0</h2>
+                    <p>Registered Complaints</p>
+                </div>
+
+                <div class="stat-icon">
+                    📋
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-card-content">
+
+                <div>
+                    <h2 id="progressCount">0</h2>
+                    <p>In Progress</p>
+                </div>
+
+                <div class="stat-icon">
+                    🔄
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-card-content">
+
+                <div>
+                    <h2 id="resolvedCount">0</h2>
+                    <p>Resolved</p>
+                </div>
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-card-content">
+
+                <div>
+                    <h2 id="improvementCount">0</h2>
+                    <p>Needs Improvement</p>
+                </div>
+
+                <div class="stat-icon">
+                    !
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         COMPLAINT MANAGEMENT
+    ================================================== -->
+
+    <section class="management">
+
+        <div class="management-header">
+
+            <h2>Complaint Management</h2>
+
+            <input
+                id="searchInput"
+                class="search"
+                type="text"
+                placeholder="Search complaint..."
+                oninput="renderComplaints()">
+
+        </div>
+
+
+        <div class="filters">
+
+            <button
+                class="filter-btn active"
+                onclick="setFilter('all', this)">
+                All
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="setFilter('registered', this)">
+                Registered
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="setFilter('in progress', this)">
+                In Progress
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="setFilter('resolved', this)">
+                Resolved / Review
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="setFilter('needs improvement', this)">
+                Needs Improvement
+            </button>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Complaint ID</th>
+
+                        <th>Category</th>
+
+                        <th>Citizen</th>
+
+                        <th>Location</th>
+
+                        <th>Date</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="complaintTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     COMPLAINT DETAILS MODAL
+===================================================== -->
+
+<div
+    id="modalBackground"
+    class="modal-background">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h2>Complaint Details</h2>
+
+            <button
+                class="close-btn"
+                onclick="closeModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            id="message"
+            class="message">
+        </div>
+
+
+        <!-- DETAILS -->
+
+        <div class="details-grid">
+
+            <div class="detail">
+
+                <label>
+                    Complaint ID
+                </label>
+
+                <strong id="detailId">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <label>
+                    Category
+                </label>
+
+                <strong id="detailCategory">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <label>
+                    Citizen
+                </label>
+
+                <strong id="detailCitizen">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <label>
+                    Mobile
+                </label>
+
+                <strong id="detailMobile">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <label>
+                    Location
+                </label>
+
+                <strong id="detailLocation">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <label>
+                    Date
+                </label>
+
+                <strong id="detailDate">
+                    -
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- DESCRIPTION -->
+
+        <div class="description-box">
+
+            <label>
+                Complaint Description
+            </label>
+
+            <p id="detailDescription">
+                No description available.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             EVIDENCE SECTION
+        ================================================== -->
+
+        <div class="evidence-section">
+
+            <h3>
+                📷 Complaint Evidence
+            </h3>
+
+
+            <div class="evidence-grid">
+
+
+                <!-- BEFORE -->
+
+                <div class="evidence-card before">
+
+                    <div class="evidence-title">
+                        🔴 Before — Problem Photo
+                    </div>
+
+
+                    <div
+                        class="photo-box"
+                        id="beforePhotoBox">
+
+                        <div
+                            id="beforePlaceholder"
+                            class="photo-placeholder">
+
+                            <span class="icon">
+                                📷
+                            </span>
+
+                            No before photo uploaded
+
+                        </div>
+
+
+                        <img
+                            id="beforeImage"
+                            src=""
+                            alt="Before complaint photo"
+                            onclick="openImage(this.src)">
+
+                    </div>
+
+
+                    <div class="image-actions">
+
+                        <button
+                            class="view-image-btn"
+                            onclick="viewBeforeImage()">
+                            🔍 View Image
+                        </button>
+
+                    </div>
+
+
+                    <p class="photo-caption">
+                        Uploaded by citizen
+                    </p>
+
+                </div>
+
+
+                <!-- AFTER -->
+
+                <div class="evidence-card after">
+
+                    <div class="evidence-title">
+                        🟢 After — Resolved Photo
+                    </div>
+
+
+                    <div
+                        class="photo-box"
+                        id="afterPhotoBox">
+
+                        <div
+                            id="afterPlaceholder"
+                            class="photo-placeholder">
+
+                            <span class="icon">
+                                🛠️
+                            </span>
+
+                            Worker has not uploaded
+                            a resolution photo
+
+                        </div>
+
+
+                        <img
+                            id="afterImage"
+                            src=""
+                            alt="After resolution photo"
+                            onclick="openImage(this.src)">
+
+                    </div>
+
+
+                    <div class="image-actions">
+
+                        <button
+                            class="view-image-btn"
+                            onclick="viewAfterImage()">
+                            🔍 View Image
+                        </button>
+
+                    </div>
+
+
+                    <p class="photo-caption">
+                        Uploaded by worker
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             WORKER RESOLUTION
+        ================================================== -->
+
+        <div class="worker-resolution">
+
+            <h3>
+                👷 Worker Resolution
+            </h3>
+
+            <p id="workerResolution">
+                Worker has not submitted a resolution yet.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             ADMIN DECISION
+        ================================================== -->
+
+        <div class="admin-decision">
+
+            <h3>
+                Admin Decision
+            </h3>
+
+
+            <div class="decision-buttons">
+
+                <button
+                    class="approve-btn"
+                    onclick="approveResolution()">
+
+                    ✓ APPROVE RESOLUTION
+
+                </button>
+
+
+                <button
+                    class="improvement-btn"
+                    onclick="showImprovement()">
+
+                    ↻ NEEDS IMPROVEMENT
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="reasonArea"
+                class="reason-area">
+
+                <textarea
+                    id="improvementReason"
+                    placeholder="Explain what needs to be improved by the worker..."></textarea>
+
+
+                <button
+                    class="send-back-btn"
+                    onclick="sendForImprovement()">
+
+                    SEND BACK TO WORKER
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FULL IMAGE VIEWER
+===================================================== -->
+
+<div
+    id="imageViewer"
+    class="image-viewer">
+
+    <button
+        class="close-image"
+        onclick="closeImage()">
+        ×
+    </button>
+
+    <img
+        id="fullImage"
+        src=""
+        alt="Complaint evidence">
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let complaints = [];
+
+let currentComplaint = null;
+
+let currentFilter = "all";
+
+
+/* =====================================================
+   LOAD COMPLAINTS
+===================================================== */
+
+function loadComplaints() {
+
+    const possibleKeys = [
+        "complaints",
+        "registeredComplaints",
+        "citizenComplaints"
+    ];
+
+
+    let dataFound = [];
+
+
+    for (const key of possibleKeys) {
+
+        const saved =
+            localStorage.getItem(key);
+
+        if (!saved) {
+            continue;
+        }
+
+
+        try {
+
+            const parsed =
+                JSON.parse(saved);
+
+            if (Array.isArray(parsed)) {
+
+                dataFound = parsed;
+
+                break;
+
+            }
+
+        } catch (error) {
+
+            console.log(
+                "Invalid complaint data:",
+                error
+            );
+
+        }
+
+    }
+
+
+    complaints =
+        dataFound.map(normalizeComplaint);
+
+
+    renderComplaints();
+
+    updateStatistics();
+
+    updateNotificationCount();
+
+}
+
+
+/* =====================================================
+   NORMALIZE DATA
+===================================================== */
+
+function normalizeComplaint(c, index) {
+
+    return {
+
+        id:
+            c.id ||
+            c.trackingId ||
+            c.complaintId ||
+            "CITYOPS-" + (10000 + index),
+
+
+        category:
+            c.category ||
+            c.issue ||
+            c.type ||
+            "General",
+
+
+        citizen:
+            c.name ||
+            c.userName ||
+            c.citizenName ||
+            "Anonymous",
+
+
+        mobile:
+            c.mobile ||
+            c.phone ||
+            c.mobileNumber ||
+            "Not provided",
+
+
+        location:
+            c.locationName ||
+            c.address ||
+            c.location ||
+            "Location not available",
+
+
+        date:
+            c.date ||
+            c.createdAt ||
+            new Date().toLocaleDateString("en-IN"),
+
+
+        description:
+            c.description ||
+            c.problem ||
+            c.details ||
+            "No description available.",
+
+
+        status:
+            String(
+                c.status ||
+                "registered"
+            ).toLowerCase(),
+
+
+        workerResolution:
+            c.workerResolution ||
+            c.resolution ||
+            c.resolvedDescription ||
+            "",
+
+
+        /* BEFORE IMAGE */
+
+        beforeImage:
+            c.beforeImage ||
+            c.beforePhoto ||
+            c.problemImage ||
+            c.complaintImage ||
+            "",
+
+
+        /* AFTER IMAGE */
+
+        afterImage:
+            c.afterImage ||
+            c.afterPhoto ||
+            c.resolutionImage ||
+            c.resolvedImage ||
+            "",
+
+
+        /* OTHER IMAGE ARRAYS */
+
+        photos:
+            Array.isArray(c.photos)
+                ? c.photos
+                : Array.isArray(c.images)
+                    ? c.images
+                    : [],
+
+
+        improvementReason:
+            c.improvementReason ||
+            "",
+
+
+        adminApproved:
+            c.adminApproved === true
+
+    };
+
+}
+
+
+/* =====================================================
+   RENDER COMPLAINTS
+===================================================== */
+
+function renderComplaints() {
+
+    const table =
+        document.getElementById(
+            "complaintTable"
+        );
+
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        ).value.toLowerCase().trim();
+
+
+    const filtered =
+        complaints.filter(c => {
+
+            const displayStatus =
+                getDisplayStatus(c.status);
+
+
+            const matchesFilter =
+                currentFilter === "all" ||
+                displayStatus === currentFilter;
+
+
+            const searchable =
+                `${c.id}
+                 ${c.category}
+                 ${c.citizen}
+                 ${c.location}`
+                .toLowerCase();
+
+
+            return (
+                matchesFilter &&
+                searchable.includes(search)
+            );
+
+        });
+
+
+    if (filtered.length === 0) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td colspan="7">
+
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            📭
+                        </div>
+
+                        <strong>
+                            No complaints found
+                        </strong>
+
+                        <p>
+                            No complaints match this filter.
+                        </p>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    table.innerHTML =
+        filtered.map(c => `
+
+            <tr>
+
+                <td>
+                    <span class="complaint-id">
+                        ${escapeHTML(c.id)}
+                    </span>
+                </td>
+
+                <td>
+                    ${escapeHTML(c.category)}
+                </td>
+
+                <td>
+                    ${escapeHTML(c.citizen)}
+                </td>
+
+                <td>
+                    <span class="location-text">
+                        ${escapeHTML(c.location)}
+                    </span>
+                </td>
+
+                <td>
+                    ${escapeHTML(c.date)}
+                </td>
+
+                <td>
+                    ${createStatusBadge(c)}
+                </td>
+
+                <td>
+
+                    <button
+                        class="view-btn"
+                        onclick="openComplaintById('${escapeHTML(c.id)}')">
+
+                        View
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `).join("");
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function getDisplayStatus(status) {
+
+    status =
+        String(status).toLowerCase();
+
+
+    if (
+        status.includes("improvement")
+    ) {
+
+        return "needs improvement";
+
+    }
+
+
+    if (
+        status.includes("progress")
+    ) {
+
+        return "in progress";
+
+    }
+
+
+    if (
+        status.includes("approved")
+    ) {
+
+        return "resolved";
+
+    }
+
+
+    if (
+        status.includes("resolved")
+    ) {
+
+        return "resolved";
+
+    }
+
+
+    return "registered";
+
+}
+
+
+/* =====================================================
+   STATUS BADGE
+===================================================== */
+
+function createStatusBadge(c) {
+
+    const status =
+        getDisplayStatus(c.status);
+
+
+    if (c.adminApproved === true) {
+
+        return `
+            <span class="status status-approved">
+                Admin Approved
+            </span>
+        `;
+
+    }
+
+
+    if (
+        status === "needs improvement"
+    ) {
+
+        return `
+            <span class="status status-improvement">
+                Needs Improvement
+            </span>
+        `;
+
+    }
+
+
+    if (
+        status === "in progress"
+    ) {
+
+        return `
+            <span class="status status-progress">
+                In Progress
+            </span>
+        `;
+
+    }
+
+
+    if (
+        status === "resolved"
+    ) {
+
+        return `
+            <span class="status status-review">
+                Awaiting Admin Approval
+            </span>
+        `;
+
+    }
+
+
+    return `
+        <span class="status status-registered">
+            Registered
+        </span>
+    `;
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+function setFilter(filter, button) {
+
+    currentFilter = filter;
+
+
+    document
+        .querySelectorAll(".filter-btn")
+        .forEach(btn => {
+
+            btn.classList.remove("active");
+
+        });
+
+
+    button.classList.add("active");
+
+
+    renderComplaints();
+
+}
+
+
+/* =====================================================
+   OPEN COMPLAINT
+===================================================== */
+
+function openComplaintById(id) {
+
+    currentComplaint =
+        complaints.find(
+            c => c.id === id
+        );
+
+
+    if (!currentComplaint) {
+
+        alert(
+            "Complaint not found."
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "detailId"
+    ).textContent =
+        currentComplaint.id;
+
+
+    document.getElementById(
+        "detailCategory"
+    ).textContent =
+        currentComplaint.category;
+
+
+    document.getElementById(
+        "detailCitizen"
+    ).textContent =
+        currentComplaint.citizen;
+
+
+    document.getElementById(
+        "detailMobile"
+    ).textContent =
+        currentComplaint.mobile;
+
+
+    document.getElementById(
+        "detailLocation"
+    ).textContent =
+        currentComplaint.location;
+
+
+    document.getElementById(
+        "detailDate"
+    ).textContent =
+        currentComplaint.date;
+
+
+    document.getElementById(
+        "detailDescription"
+    ).textContent =
+        currentComplaint.description;
+
+
+    document.getElementById(
+        "workerResolution"
+    ).textContent =
+        currentComplaint.workerResolution ||
+        "Worker has not submitted a resolution yet.";
+
+
+    loadEvidence();
+
+
+    document.getElementById(
+        "reasonArea"
+    ).classList.remove("show");
+
+
+    document.getElementById(
+        "improvementReason"
+    ).value = "";
+
+
+    document.getElementById(
+        "message"
+    ).className =
+        "message";
+
+
+    document.getElementById(
+        "message"
+    ).textContent = "";
+
+
+    document.getElementById(
+        "modalBackground"
+    ).classList.add("show");
+
+}
+
+
+/* =====================================================
+   LOAD BEFORE + AFTER EVIDENCE
+===================================================== */
+
+function loadEvidence() {
+
+    const beforeImage =
+        document.getElementById(
+            "beforeImage"
+        );
+
+
+    const afterImage =
+        document.getElementById(
+            "afterImage"
+        );
+
+
+    const beforePlaceholder =
+        document.getElementById(
+            "beforePlaceholder"
+        );
+
+
+    const afterPlaceholder =
+        document.getElementById(
+            "afterPlaceholder"
+        );
+
+
+    /*
+       BEFORE PHOTO
+    */
+
+    if (currentComplaint.beforeImage) {
+
+        beforeImage.src =
+            currentComplaint.beforeImage;
+
+        beforeImage.style.display =
+            "block";
+
+        beforePlaceholder.style.display =
+            "none";
+
+    } else {
+
+        beforeImage.src = "";
+
+        beforeImage.style.display =
+            "none";
+
+        beforePlaceholder.style.display =
+            "block";
+
+    }
+
+
+    /*
+       AFTER PHOTO
+    */
+
+    if (currentComplaint.afterImage) {
+
+        afterImage.src =
+            currentComplaint.afterImage;
+
+        afterImage.style.display =
+            "block";
+
+        afterPlaceholder.style.display =
+            "none";
+
+    } else {
+
+        afterImage.src = "";
+
+        afterImage.style.display =
+            "none";
+
+        afterPlaceholder.style.display =
+            "block";
+
+    }
+
+}
+
+
+/* =====================================================
+   VIEW BEFORE IMAGE
+===================================================== */
+
+function viewBeforeImage() {
+
+    const image =
+        document.getElementById(
+            "beforeImage"
+        );
+
+
+    if (
+        image.src &&
+        image.style.display !== "none"
+    ) {
+
+        openImage(image.src);
+
+    } else {
+
+        alert(
+            "No before photo has been uploaded."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   VIEW AFTER IMAGE
+===================================================== */
+
+function viewAfterImage() {
+
+    const image =
+        document.getElementById(
+            "afterImage"
+        );
+
+
+    if (
+        image.src &&
+        image.style.display !== "none"
+    ) {
+
+        openImage(image.src);
+
+    } else {
+
+        alert(
+            "Worker has not uploaded a resolution photo yet."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   OPEN FULL IMAGE
+===================================================== */
+
+function openImage(src) {
+
+    if (!src) {
+        return;
+    }
+
+
+    document.getElementById(
+        "fullImage"
+    ).src = src;
+
+
+    document.getElementById(
+        "imageViewer"
+    ).classList.add("show");
+
+}
+
+
+/* =====================================================
+   CLOSE IMAGE
+===================================================== */
+
+function closeImage() {
+
+    document.getElementById(
+        "imageViewer"
+    ).classList.remove("show");
+
+
+    document.getElementById(
+        "fullImage"
+    ).src = "";
+
+}
+
+
+/* =====================================================
+   ADMIN APPROVE
+===================================================== */
+
+function approveResolution() {
+
+    if (!currentComplaint) {
+        return;
+    }
+
+
+    /*
+       Worker must submit resolution
+       before Admin can approve.
+    */
+
+    if (!currentComplaint.workerResolution) {
+
+        showMessage(
+            "warning",
+            "Worker has not submitted a resolution yet. Admin cannot approve this complaint."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       UPDATE STATUS
+    */
+
+    currentComplaint.status =
+        "approved";
+
+
+    currentComplaint.adminApproved =
+        true;
+
+
+    currentComplaint.adminApprovedAt =
+        new Date().toISOString();
+
+
+    /*
+       SAVE
+    */
+
+    saveComplaints();
+
+
+    /*
+       CREATE PUBLIC NOTIFICATION
+    */
+
+    createPublicNotification(
+        currentComplaint
+    );
+
+
+    /*
+       UPDATE UI
+    */
+
+    showMessage(
+        "success",
+        "✓ Resolution approved. Public notification has been published."
+    );
+
+
+    updateStatistics();
+
+    updateNotificationCount();
+
+    renderComplaints();
+
+}
+
+
+/* =====================================================
+   SHOW IMPROVEMENT
+===================================================== */
+
+function showImprovement() {
+
+    document.getElementById(
+        "reasonArea"
+    ).classList.add("show");
+
+}
+
+
+/* =====================================================
+   SEND BACK TO WORKER
+===================================================== */
+
+function sendForImprovement() {
+
+    if (!currentComplaint) {
+        return;
+    }
+
+
+    const reason =
+        document.getElementById(
+            "improvementReason"
+        ).value.trim();
+
+
+    if (!reason) {
+
+        alert(
+            "Please enter what needs to be improved."
+        );
+
+        return;
+
+    }
+
+
+    currentComplaint.status =
+        "needs improvement";
+
+
+    currentComplaint.adminApproved =
+        false;
+
+
+    currentComplaint.improvementReason =
+        reason;
+
+
+    /*
+       IMPORTANT:
+       NO PUBLIC NOTIFICATION HERE.
+    */
+
+    saveComplaints();
+
+
+    showMessage(
+        "warning",
+        "↻ Complaint sent back to the worker for improvement."
+    );
+
+
+    document.getElementById(
+        "reasonArea"
+    ).classList.remove("show");
+
+
+    document.getElementById(
+        "improvementReason"
+    ).value = "";
+
+
+    updateStatistics();
+
+    renderComplaints();
+
+}
+
+
+/* =====================================================
+   PUBLIC NOTIFICATION
+===================================================== */
+
+function createPublicNotification(complaint) {
+
+    let notifications =
+        JSON.parse(
+            localStorage.getItem(
+                "publicNotifications"
+            ) || "[]"
+        );
+
+
+    /*
+       Prevent duplicate notifications
+    */
+
+    const alreadyExists =
+        notifications.some(
+            n =>
+                n.complaintId ===
+                complaint.id
+        );
+
+
+    if (alreadyExists) {
+        return;
+    }
+
+
+    const notification = {
+
+        id:
+            "NOT-" +
+            Date.now(),
+
+        complaintId:
+            complaint.id,
+
+        title:
+            "Complaint Resolved",
+
+        message:
+            `Complaint ${complaint.id} has been resolved and approved by the administration.`,
+
+        category:
+            complaint.category,
+
+        location:
+            complaint.location,
+
+        date:
+            new Date().toLocaleString(
+                "en-IN"
+            ),
+
+        read:
+            false
+
+    };
+
+
+    notifications.unshift(
+        notification
+    );
+
+
+    localStorage.setItem(
+        "publicNotifications",
+        JSON.stringify(
+            notifications
+        )
+    );
+
+}
+
+
+/* =====================================================
+   SAVE COMPLAINTS
+===================================================== */
+
+function saveComplaints() {
+
+    localStorage.setItem(
+        "complaints",
+        JSON.stringify(
+            complaints
+        )
+    );
+
+
+    localStorage.setItem(
+        "registeredComplaints",
+        JSON.stringify(
+            complaints
+        )
+    );
+
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+function updateStatistics() {
+
+    const registered =
+        complaints.length;
+
+
+    const progress =
+        complaints.filter(
+            c =>
+                getDisplayStatus(
+                    c.status
+                ) === "in progress"
+        ).length;
+
+
+    const resolved =
+        complaints.filter(
+            c =>
+                c.adminApproved === true
+        ).length;
+
+
+    const improvement =
+        complaints.filter(
+            c =>
+                getDisplayStatus(
+                    c.status
+                ) === "needs improvement"
+        ).length;
+
+
+    document.getElementById(
+        "registeredCount"
+    ).textContent =
+        registered;
+
+
+    document.getElementById(
+        "progressCount"
+    ).textContent =
+        progress;
+
+
+    document.getElementById(
+        "resolvedCount"
+    ).textContent =
+        resolved;
+
+
+    document.getElementById(
+        "improvementCount"
+    ).textContent =
+        improvement;
+
+}
+
+
+/* =====================================================
+   NOTIFICATION COUNT
+===================================================== */
+
+function updateNotificationCount() {
+
+    const notifications =
+        JSON.parse(
+            localStorage.getItem(
+                "publicNotifications"
+            ) || "[]"
+        );
+
+
+    document.getElementById(
+        "notificationCount"
+    ).textContent =
+        notifications.length;
+
+}
+
+
+/* =====================================================
+   SHOW MESSAGE
+===================================================== */
+
+function showMessage(
+    type,
+    text
+) {
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.className =
+        "message " +
+        type +
+        " show";
+
+
+    message.textContent =
+        text;
+
+}
+
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
+
+function closeModal() {
+
+    document.getElementById(
+        "modalBackground"
+    ).classList.remove("show");
+
+
+    currentComplaint = null;
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout() {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   MODAL OUTSIDE CLICK
+===================================================== */
+
+document
+    .getElementById(
+        "modalBackground"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   IMAGE VIEWER OUTSIDE CLICK
+===================================================== */
+
+document
+    .getElementById(
+        "imageViewer"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                closeImage();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   START
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadComplaints();
+
+    }
+);
+
+</script>
+
+</body>
+</html>

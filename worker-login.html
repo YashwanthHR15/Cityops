@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Worker Login | Indian Government</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f8fd;
+    color: #102d5c;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+
+header {
+    height: 82px;
+    background: white;
+    border-bottom: 1px solid #dce6f2;
+
+    display: flex;
+    align-items: center;
+}
+
+.header-inner {
+    width: 92%;
+    max-width: 1200px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    text-decoration: none;
+    color: #102d5c;
+}
+
+.emblem {
+    font-size: 38px;
+}
+
+.brand h1 {
+    font-size: 23px;
+    margin-bottom: 3px;
+}
+
+.brand p {
+    color: #56708f;
+    font-size: 13px;
+}
+
+/* LOGIN AREA */
+
+.login-area {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 50px 20px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 460px;
+
+    background: white;
+
+    border: 1px solid #dce6f2;
+    border-radius: 20px;
+
+    padding: 38px;
+
+    box-shadow:
+        0 15px 40px rgba(30,70,110,0.10);
+}
+
+/* TITLE */
+
+.login-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.worker-icon {
+    width: 72px;
+    height: 72px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    background: #e8f2fd;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 34px;
+}
+
+.login-title h2 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.login-title p {
+    color: #607895;
+    font-size: 14px;
+}
+
+/* FORM */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+
+    padding: 14px 15px;
+
+    border: 1px solid #cbd9e9;
+
+    border-radius: 10px;
+
+    background: #fbfdff;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+input:focus {
+    border-color: #1269d5;
+
+    box-shadow:
+        0 0 0 3px rgba(18,105,213,0.10);
+}
+
+/* BUTTON */
+
+.login-button {
+    width: 100%;
+
+    border: none;
+
+    background: #1269d5;
+
+    color: white;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-top: 5px;
+}
+
+.login-button:hover {
+    background: #0758bd;
+}
+
+/* MESSAGE */
+
+.message {
+    display: none;
+
+    margin-top: 18px;
+
+    padding: 13px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    text-align: center;
+}
+
+.error {
+    display: block;
+
+    background: #fff0f0;
+
+    color: #c53030;
+
+    border: 1px solid #f0c0c0;
+}
+
+/* BACK */
+
+.back-link {
+    display: block;
+
+    text-align: center;
+
+    margin-top: 24px;
+
+    color: #1269d5;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* FOOTER */
+
+footer {
+    background: #082453;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 22px;
+
+    font-size: 14px;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    header {
+        height: auto;
+        padding: 15px 0;
+    }
+
+    .header-inner {
+        justify-content: center;
+    }
+
+    .login-card {
+        padding: 28px 22px;
+    }
+
+    .login-title h2 {
+        font-size: 26px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+<div class="header-inner">
+
+<a href="index.html" class="brand">
+
+<div class="emblem">
+🏛️
+</div>
+
+<div>
+
+<h1>Indian Government</h1>
+
+<p>
+Citizen First • Cleaner Cities • Stronger India
+</p>
+
+</div>
+
+</a>
+
+</div>
+
+</header>
+
+
+
+<!-- LOGIN -->
+
+<main class="login-area">
+
+<div class="login-card">
+
+
+<div class="login-title">
+
+<div class="worker-icon">
+👷
+</div>
+
+<h2>
+Worker Login
+</h2>
+
+<p>
+Login to manage assigned complaints
+</p>
+
+</div>
+
+
+
+<form id="workerLoginForm">
+
+
+<div class="form-group">
+
+<label for="workerId">
+Worker ID
+</label>
+
+<input
+type="text"
+id="workerId"
+placeholder="Enter Worker ID"
+required
+>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label for="workerPassword">
+Password
+</label>
+
+<input
+type="password"
+id="workerPassword"
+placeholder="Enter Password"
+required
+>
+
+</div>
+
+
+
+<button
+type="submit"
+class="login-button"
+>
+
+LOGIN AS WORKER
+
+</button>
+
+
+<div
+id="loginMessage"
+class="message"
+></div>
+
+
+</form>
+
+
+
+<a
+href="index.html"
+class="back-link"
+>
+
+← Back to Main Website
+
+</a>
+
+
+</div>
+
+</main>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<span>♥</span>
+
+Cleaner Cities
+&nbsp; | &nbsp;
+Safer Communities
+&nbsp; | &nbsp;
+<strong>Stronger India</strong>
+
+</footer>
+
+
+
+<script>
+
+/*
+========================================
+WORKER LOGIN DETAILS
+========================================
+*/
+
+const WORKER_ID = "WORKER001";
+const WORKER_PASSWORD = "worker123";
+
+
+/*
+========================================
+LOGIN
+========================================
+*/
+
+document
+.getElementById("workerLoginForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    const workerId =
+        document
+        .getElementById("workerId")
+        .value
+        .trim();
+
+
+    const password =
+        document
+        .getElementById("workerPassword")
+        .value;
+
+
+    const message =
+        document
+        .getElementById("loginMessage");
+
+
+    /*
+    CHECK LOGIN
+    */
+
+    if (
+        workerId === WORKER_ID &&
+        password === WORKER_PASSWORD
+    ) {
+
+        /*
+        SAVE LOGIN
+        */
+
+        localStorage.setItem(
+            "workerLoggedIn",
+            "true"
+        );
+
+        localStorage.setItem(
+            "workerId",
+            workerId
+        );
+
+
+        /*
+        GO TO WORKER DASHBOARD
+        */
+
+        window.location.href =
+            "worker-dashboard.html";
+
+    }
+
+    else {
+
+        message.textContent =
+            "Invalid Worker ID or Password.";
+
+        message.className =
+            "message error";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

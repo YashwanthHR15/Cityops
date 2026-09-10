@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Indian Government | Citizen Grievance Portal</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="india-flag-bg"></div>
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="brand">
+
+        <div class="emblem">
+            🇮🇳
+        </div>
+
+        <div>
+            <h1>Indian Government</h1>
+            <p>Citizens First • Cleaner Cities • Stronger India</p>
+        </div>
+
+    </div>
+
+
+ <nav>
+
+    <a href="index.html" class="active">
+        Home
+    </a>
+
+    <a href="complaint.html">
+        Raise Complaint
+    </a>
+
+    <a href="track.html">
+        Track Complaint
+    </a>
+
+    <button type="button" class="logout-button" id="logoutButton">
+        Logout
+    </button>
+
+</nav>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="home-hero">
+
+    <div class="hero-content">
+
+        <p class="small-title">
+            CITIZEN GRIEVANCE PORTAL
+        </p>
+
+        <h2>
+            Your Voice. Our Responsibility.
+        </h2>
+
+        <p>
+            Report civic problems in your area and help build
+            cleaner, safer and better communities.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="complaint.html" class="primary-btn">
+                Raise a Complaint →
+            </a>
+
+            <a href="track.html" class="secondary-btn">
+                Track Complaint
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STATISTICS ================= -->
+
+<section class="statistics">
+
+    <div class="section-heading">
+
+        <h2>
+            Complaint Status
+        </h2>
+
+        <p>
+            See how citizen complaints are being addressed.
+        </p>
+
+    </div>
+
+
+    <div class="stats-grid">
+
+        <!-- TOTAL -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📋
+            </div>
+                
+            <div>
+
+                <h3 id="totalComplaints">
+                    
+                </h3>
+
+                <p>
+                    Registered Complaints
+                    
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESOLVED -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon resolved">
+                ✓
+            </div>
+
+            <div>
+
+                <h3 id="resolvedComplaints">
+                    123
+                </h3>
+
+                <p>
+                    Complaints Resolved
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- IN PROGRESS -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon progress">
+                ⟳
+            </div>
+
+            <div>
+
+                <h3 id="progressComplaints">
+                    0
+                </h3>
+
+                <p>
+                    In Progress
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PENDING -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon pending">
+                !
+            </div>
+
+            <div>
+
+                <h3 id="pendingComplaints">
+                    0
+                </h3>
+
+                <p>
+                    Pending Complaints
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section class="how-section">
+
+    <div class="section-heading">
+
+        <h2>
+            How It Works
+        </h2>
+
+        <p>
+            Report a problem in three simple steps.
+        </p>
+
+    </div>
+
+
+    <div class="steps">
+
+        <div class="step">
+
+            <span>
+                01
+            </span>
+
+            <h3>
+                Report
+            </h3>
+
+            <p>
+                Select the civic issue and provide its
+                location and photo.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <span>
+                02
+            </span>
+
+            <h3>
+                Track
+            </h3>
+
+            <p>
+                Receive a unique Tracking ID after
+                submitting your complaint.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <span>
+                03
+            </span>
+
+            <h3>
+                Resolve
+            </h3>
+
+            <p>
+                Follow your complaint until the issue
+                is resolved.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        🇮🇳 Indian Government • Citizen Grievance Portal
+    </p>
+
+    <p>
+        Cleaner Cities | Safer Communities | Stronger India
+    </p>
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    document
+        .getElementById("logoutButton")
+        .addEventListener("click", function () {
+
+            localStorage.removeItem("citizenLoggedIn");
+            localStorage.removeItem("currentCitizenId");
+            localStorage.removeItem("currentCitizenName");
+
+            window.location.href = "login.html";
+
+        });
+
+    function getComplaintStats() {
+
+        let complaints = [];
+
+        try {
+
+            const savedComplaints =
+                localStorage.getItem("complaints");
+
+            const parsedComplaints =
+                savedComplaints ? JSON.parse(savedComplaints) : [];
+
+            if (Array.isArray(parsedComplaints)) {
+                complaints = parsedComplaints;
+            }
+
+        } catch (error) {
+
+            console.error("Unable to read complaints:", error);
+
+        }
+
+        const complaintStats = {
+            total: complaints.length,
+            resolved: 0,
+            progress: 0,
+            pending: 0
+        };
+
+        complaints.forEach(function (complaint) {
+
+            const status =
+                String(complaint.status || "pending")
+                    .trim()
+                    .toLowerCase();
+
+            if (
+                status === "completed" ||
+                status.includes("resolved") ||
+                status.includes("approved")
+            ) {
+
+                complaintStats.resolved++;
+
+            } else if (
+                status === "in progress" ||
+                status === "in-progress" ||
+                status === "assigned" ||
+                status === "working"
+            ) {
+
+                complaintStats.progress++;
+
+            } else {
+
+                complaintStats.pending++;
+
+            }
+
+        });
+
+        return complaintStats;
+
+    }
+
+
+    const complaintStats = getComplaintStats();
+
+
+    document.getElementById("totalComplaints").textContent =
+        complaintStats.total;
+
+    document.getElementById("resolvedComplaints").textContent =
+        complaintStats.resolved;
+
+    document.getElementById("progressComplaints").textContent =
+        complaintStats.progress;
+
+    document.getElementById("pendingComplaints").textContent =
+        complaintStats.pending;
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Register Complaint | Indian Government</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f3f8fd;
+    color:#102d5c;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    background:#ffffff;
+    border-bottom:1px solid #dce6f2;
+    height:82px;
+    display:flex;
+    align-items:center;
+}
+
+.header-inner{
+    width:92%;
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:#102d5c;
+}
+
+.emblem{
+    font-size:38px;
+}
+
+.brand h1{
+    font-size:23px;
+    margin-bottom:3px;
+}
+
+.brand p{
+    color:#56708f;
+    font-size:13px;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:32px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#102d5c;
+    font-weight:600;
+    font-size:15px;
+}
+
+nav a:hover{
+    color:#0867d8;
+}
+
+.profile{
+    width:44px;
+    height:44px;
+    border:none;
+    border-radius:50%;
+    background:#eef5fc;
+    font-size:20px;
+}
+
+/* ================= PAGE ================= */
+
+.page{
+    width:92%;
+    max-width:900px;
+    margin:45px auto 70px;
+}
+
+.page-heading{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.page-heading h2{
+    font-size:35px;
+    margin-bottom:10px;
+}
+
+.page-heading p{
+    color:#58708f;
+    font-size:16px;
+}
+
+/* ================= CATEGORY ================= */
+
+.category-box{
+    background:#e8f2fd;
+    border:1px solid #d3e4f5;
+    border-radius:14px;
+    padding:17px 22px;
+    margin-bottom:25px;
+}
+
+.category-label{
+    color:#607895;
+    font-size:13px;
+    margin-bottom:5px;
+}
+
+#categoryName{
+    font-size:21px;
+    font-weight:bold;
+    color:#0c56b7;
+}
+
+/* ================= FORM CARD ================= */
+
+.form-card{
+    background:#ffffff;
+    border:1px solid #dce6f2;
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 12px 35px rgba(30,70,110,0.08);
+}
+
+.form-group{
+    margin-bottom:22px;
+}
+
+.form-group label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:8px;
+    font-size:14px;
+}
+
+.form-group label span{
+    color:#777;
+    font-weight:normal;
+}
+
+input,
+textarea{
+    width:100%;
+    border:1px solid #cbd9e9;
+    border-radius:10px;
+    padding:13px 15px;
+    font-size:15px;
+    color:#18365e;
+    background:#fbfdff;
+    outline:none;
+}
+
+input:focus,
+textarea:focus{
+    border-color:#1470dc;
+    box-shadow:0 0 0 3px rgba(20,112,220,0.10);
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+/* ================= LOCATION ================= */
+
+.location-box{
+    background:#f5f9fd;
+    border:1px solid #dce7f2;
+    border-radius:14px;
+    padding:18px;
+}
+
+.location-button{
+    border:none;
+    background:#1269d5;
+    color:white;
+    padding:12px 18px;
+    border-radius:9px;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.location-button:hover{
+    background:#0757bb;
+}
+
+.location-button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.location-status{
+    margin-top:12px;
+    font-size:14px;
+    color:#526d8c;
+}
+
+.location-details{
+    display:none;
+    margin-top:15px;
+    background:#ffffff;
+    border-radius:10px;
+    padding:14px;
+    border:1px solid #dce7f2;
+}
+
+.location-details p{
+    margin:6px 0;
+    font-size:14px;
+}
+
+.location-details strong{
+    color:#18365e;
+}
+
+/* ================= PHOTO ================= */
+
+.photo-area{
+    border:2px dashed #b9cde2;
+    border-radius:14px;
+    padding:22px;
+    text-align:center;
+    background:#f8fbff;
+}
+
+.photo-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.photo-button{
+    border:none;
+    border-radius:9px;
+    padding:12px 20px;
+    background:#e5f0fc;
+    color:#075fc7;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.photo-button:hover{
+    background:#d6e8fb;
+}
+
+#photoInput{
+    display:none;
+}
+
+#cameraInput{
+    display:none;
+}
+
+.preview-container{
+    display:none;
+    margin-top:20px;
+}
+
+.preview-container img{
+    max-width:100%;
+    max-height:350px;
+    border-radius:12px;
+    border:1px solid #d4dfeb;
+}
+
+.photo-info{
+    margin-top:10px;
+    font-size:13px;
+    color:#607895;
+}
+
+/* ================= BUTTON ================= */
+
+.submit-button{
+    width:100%;
+    border:none;
+    background:#1169d8;
+    color:white;
+    padding:16px;
+    border-radius:11px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.submit-button:hover{
+    background:#0758bd;
+}
+
+.submit-button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+/* ================= MESSAGE ================= */
+
+.message{
+    display:none;
+    margin-top:20px;
+    padding:15px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.success{
+    background:#e6f7ed;
+    color:#128348;
+    border:1px solid #b9e8cc;
+}
+
+.error{
+    background:#fff0f0;
+    color:#c53030;
+    border:1px solid #f0c0c0;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#082453;
+    color:white;
+    text-align:center;
+    padding:24px;
+    font-size:14px;
+}
+
+footer .heart{
+    color:#ff4d6d;
+    margin-right:6px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:700px){
+
+    header{
+        height:auto;
+        padding:15px 0;
+    }
+
+    .header-inner{
+        flex-direction:column;
+        gap:18px;
+    }
+
+    nav{
+        gap:18px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .page{
+        width:94%;
+        margin-top:30px;
+    }
+
+    .page-heading h2{
+        font-size:28px;
+    }
+
+    .form-card{
+        padding:22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="header-inner">
+
+        <a href="index.html" class="brand">
+
+            <div class="emblem">🏛️</div>
+
+            <div>
+                <h1>Indian Government</h1>
+                <p>Citizen First • Cleaner Cities • Stronger India</p>
+            </div>
+
+        </a>
+
+        <nav>
+
+            <a href="index.html">Home</a>
+
+            <a href="complaint.html">
+                Raise Complaint
+            </a>
+
+            <a href="track.html">
+                Track Complaint
+            </a>
+
+            <a href="#">
+                About
+            </a>
+
+            <button class="profile">♙</button>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="page">
+
+    <div class="page-heading">
+
+        <h2>Register Your Complaint</h2>
+
+        <p>
+            Provide the details below so your complaint can be
+            properly registered and tracked.
+        </p>
+
+    </div>
+
+
+    <!-- SELECTED CATEGORY -->
+
+    <div class="category-box">
+
+        <div class="category-label">
+            Complaint Category
+        </div>
+
+        <div id="categoryName">
+            Loading...
+        </div>
+
+    </div>
+
+
+    <!-- FORM -->
+
+    <div class="form-card">
+
+        <form id="complaintForm">
+
+
+            <!-- NAME -->
+
+            <div class="form-group">
+
+                <label>
+                    Your Name
+                    <span>(Optional)</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="citizenName"
+                    placeholder="Enter your name"
+                >
+
+            </div>
+
+
+            <!-- MOBILE -->
+
+            <div class="form-group">
+
+                <label>
+                    Mobile Number
+                    <span>(Optional)</span>
+                </label>
+
+                <input
+                    type="tel"
+                    id="mobile"
+                    placeholder="Enter your mobile number"
+                    maxlength="10"
+                >
+
+            </div>
+
+
+            <!-- ADDRESS -->
+
+            <div class="form-group">
+
+                <label>
+                    Address
+                </label>
+
+                <input
+                    type="text"
+                    id="address"
+                    placeholder="Enter the address where the problem exists"
+                    required
+                >
+
+            </div>
+
+
+            <!-- LANDMARK -->
+
+            <div class="form-group">
+
+                <label>
+                    Landmark
+                </label>
+
+                <input
+                    type="text"
+                    id="landmark"
+                    placeholder="Nearby landmark"
+                >
+
+            </div>
+
+
+            <!-- LIVE LOCATION -->
+
+            <div class="form-group">
+
+                <label>
+                    Live Location
+                </label>
+
+                <div class="location-box">
+
+                    <button
+                        type="button"
+                        class="location-button"
+                        id="locationButton"
+                        onclick="detectLocation()"
+                    >
+                        📍 Detect My Location
+                    </button>
+
+
+                    <div
+                        class="location-status"
+                        id="locationStatus"
+                    >
+                        Click the button to detect your current location.
+                    </div>
+
+
+                    <div
+                        class="location-details"
+                        id="locationDetails"
+                    >
+
+                        <p>
+                            <strong>Location:</strong>
+                            <span id="locationName">
+                                -
+                            </span>
+                        </p>
+
+                        <p>
+                            <strong>Latitude:</strong>
+                            <span id="latitude">
+                                -
+                            </span>
+                        </p>
+
+                        <p>
+                            <strong>Longitude:</strong>
+                            <span id="longitude">
+                                -
+                            </span>
+                        </p>
+
+                        <p>
+                            <strong>Accuracy:</strong>
+                            <span id="accuracy">
+                                -
+                            </span>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO -->
+
+            <div class="form-group">
+
+                <label>
+                    Complaint Photo
+                </label>
+
+                <div class="photo-area">
+
+                    <p style="margin-bottom:15px;color:#58708f;">
+                        Upload a photo or capture the problem directly
+                        from your camera.
+                    </p>
+
+
+                    <div class="photo-buttons">
+
+                        <button
+                            type="button"
+                            class="photo-button"
+                            onclick="document.getElementById('photoInput').click()"
+                        >
+                            📁 Upload Photo
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="photo-button"
+                            onclick="document.getElementById('cameraInput').click()"
+                        >
+                            📷 Take Photo
+                        </button>
+
+                    </div>
+
+
+                    <!-- NORMAL UPLOAD -->
+
+                    <input
+                        type="file"
+                        id="photoInput"
+                        accept="image/*"
+                    >
+
+
+                    <!-- CAMERA -->
+
+                    <input
+                        type="file"
+                        id="cameraInput"
+                        accept="image/*"
+                        capture="environment"
+                    >
+
+
+                    <!-- PREVIEW -->
+
+                    <div
+                        class="preview-container"
+                        id="previewContainer"
+                    >
+
+                        <img
+                            id="photoPreview"
+                            alt="Complaint photo preview"
+                        >
+
+                        <div
+                            class="photo-info"
+                            id="photoInfo"
+                        >
+                            Photo ready.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+                <label>
+                    Complaint Description
+                </label>
+
+                <textarea
+                    id="description"
+                    placeholder="Describe the problem clearly..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="submit-button"
+                id="submitButton"
+            >
+                SUBMIT COMPLAINT →
+            </button>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                class="message"
+                id="message"
+            ></div>
+
+
+        </form>
+
+    </div>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <span class="heart">♥</span>
+
+    Cleaner Cities
+
+    &nbsp; | &nbsp;
+
+    Safer Communities
+
+    &nbsp; | &nbsp;
+
+    <strong>Stronger India</strong>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   GET CATEGORY FROM complaint.html
+========================================================= */
+
+let selectedCategory =
+    localStorage.getItem("selectedCategory");
+
+if(!selectedCategory){
+
+    selectedCategory = "General Complaint";
+
+}
+
+document.getElementById("categoryName").textContent =
+    selectedCategory;
+
+
+/* =========================================================
+   LOCATION VARIABLES
+========================================================= */
+
+let currentLatitude = null;
+let currentLongitude = null;
+let currentAccuracy = null;
+let currentLocationName = "";
+
+let originalPhotoData = null;
+let geoTaggedPhotoData = null;
+
+
+/* =========================================================
+   DETECT LIVE LOCATION
+========================================================= */
+
+function detectLocation(){
+
+    const button =
+        document.getElementById("locationButton");
+
+    const status =
+        document.getElementById("locationStatus");
+
+    if(!navigator.geolocation){
+
+        status.textContent =
+            "Geolocation is not supported by this browser.";
+
+        return;
+
+    }
+
+    button.disabled = true;
+
+    button.textContent =
+        "📍 Detecting Location...";
+
+    status.textContent =
+        "Please allow location permission...";
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        async function(position){
+
+            currentLatitude =
+                position.coords.latitude;
+
+            currentLongitude =
+                position.coords.longitude;
+
+            currentAccuracy =
+                position.coords.accuracy;
+
+
+            document.getElementById("latitude")
+                .textContent =
+                currentLatitude.toFixed(6);
+
+            document.getElementById("longitude")
+                .textContent =
+                currentLongitude.toFixed(6);
+
+            document.getElementById("accuracy")
+                .textContent =
+                Math.round(currentAccuracy) + " metres";
+
+
+            status.textContent =
+                "Location detected successfully.";
+
+            document.getElementById("locationDetails")
+                .style.display = "block";
+
+
+            /*
+                Convert latitude/longitude into
+                a readable location name.
+            */
+
+            await getLocationName(
+                currentLatitude,
+                currentLongitude
+            );
+
+
+            button.disabled = false;
+
+            button.textContent =
+                "📍 Location Detected";
+
+        },
+
+        function(error){
+
+            button.disabled = false;
+
+            button.textContent =
+                "📍 Detect My Location";
+
+
+            if(error.code === 1){
+
+                status.textContent =
+                    "Location permission was denied. Please allow location access.";
+
+            }
+
+            else if(error.code === 2){
+
+                status.textContent =
+                    "Unable to determine your location.";
+
+            }
+
+            else if(error.code === 3){
+
+                status.textContent =
+                    "Location request timed out.";
+
+            }
+
+            else{
+
+                status.textContent =
+                    "Unable to detect location.";
+
+            }
+
+        },
+
+        {
+            enableHighAccuracy:true,
+            timeout:15000,
+            maximumAge:0
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   REVERSE GEOCODING
+   LAT/LONG → LOCATION NAME
+========================================================= */
+
+async function getLocationName(latitude, longitude){
+
+    const status =
+        document.getElementById("locationStatus");
+
+    const locationName =
+        document.getElementById("locationName");
+
+
+    status.textContent =
+        "Location detected. Finding place name...";
+
+
+    try{
+
+        const response =
+            await fetch(
+                "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat="
+                + latitude
+                + "&lon="
+                + longitude
+                + "&zoom=18&addressdetails=1"
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Reverse geocoding failed"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const address =
+            data.address || {};
+
+
+        const parts = [];
+
+
+        if(address.road)
+            parts.push(address.road);
+
+        if(address.neighbourhood)
+            parts.push(address.neighbourhood);
+
+        if(address.suburb)
+            parts.push(address.suburb);
+
+        if(address.city)
+            parts.push(address.city);
+
+        else if(address.town)
+            parts.push(address.town);
+
+        else if(address.village)
+            parts.push(address.village);
+
+        if(address.state)
+            parts.push(address.state);
+
+
+        if(parts.length > 0){
+
+            currentLocationName =
+                parts.join(", ");
+
+        }
+
+        else if(data.display_name){
+
+            currentLocationName =
+                data.display_name;
+
+        }
+
+        else{
+
+            currentLocationName =
+                latitude.toFixed(6)
+                + ", "
+                + longitude.toFixed(6);
+
+        }
+
+
+        locationName.textContent =
+            currentLocationName;
+
+
+        status.textContent =
+            "Location name detected successfully.";
+
+    }
+
+    catch(error){
+
+        /*
+            Even if internet/reverse-geocoding is unavailable,
+            keep the coordinates so the complaint still contains
+            accurate GPS information.
+        */
+
+        currentLocationName =
+            "GPS Location: "
+            + latitude.toFixed(6)
+            + ", "
+            + longitude.toFixed(6);
+
+
+        locationName.textContent =
+            currentLocationName;
+
+
+        status.textContent =
+            "GPS detected. Place name could not be retrieved.";
+
+    }
+
+}
+
+
+/* =========================================================
+   PHOTO UPLOAD
+========================================================= */
+
+document
+    .getElementById("photoInput")
+    .addEventListener(
+        "change",
+        function(){
+
+            if(this.files && this.files[0]){
+
+                processPhoto(this.files[0]);
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   CAMERA PHOTO
+========================================================= */
+
+document
+    .getElementById("cameraInput")
+    .addEventListener(
+        "change",
+        function(){
+
+            if(this.files && this.files[0]){
+
+                processPhoto(this.files[0]);
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   PROCESS PHOTO
+========================================================= */
+
+function processPhoto(file){
+
+    if(!file.type.startsWith("image/")){
+
+        alert(
+            "Please select a valid image."
+        );
+
+        return;
+
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload = function(event){
+
+        originalPhotoData =
+            event.target.result;
+
+
+        document.getElementById("photoPreview")
+            .src =
+            originalPhotoData;
+
+
+        document.getElementById("previewContainer")
+            .style.display =
+            "block";
+
+
+        document.getElementById("photoInfo")
+            .textContent =
+            "Photo selected. Preparing geo-tagged evidence...";
+
+
+        /*
+            Create geo-tagged version.
+        */
+
+        createGeoTaggedPhoto(
+            originalPhotoData
+        );
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+}
+
+
+/* =========================================================
+   CREATE GEO-TAGGED PHOTO
+========================================================= */
+
+function createGeoTaggedPhoto(imageData){
+
+    const image =
+        new Image();
+
+
+    image.onload = function(){
+
+        const canvas =
+            document.createElement("canvas");
+
+
+        const ctx =
+            canvas.getContext("2d");
+
+
+        canvas.width =
+            image.width;
+
+
+        canvas.height =
+            image.height;
+
+
+        /*
+            Original photo
+        */
+
+        ctx.drawImage(
+            image,
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        /*
+            If location is not detected yet,
+            save the original photo.
+        */
+
+        if(
+            currentLatitude === null ||
+            currentLongitude === null
+        ){
+
+            geoTaggedPhotoData =
+                originalPhotoData;
+
+
+            document.getElementById("photoInfo")
+                .textContent =
+                "Photo uploaded. Detect live location to add GPS tag.";
+
+            return;
+
+        }
+
+
+        /*
+            Create bottom geo-tag panel.
+        */
+
+        const panelHeight =
+            Math.max(
+                100,
+                Math.round(canvas.height * 0.16)
+            );
+
+
+        const oldImage =
+            canvas.toDataURL("image/jpeg",0.92);
+
+
+        /*
+            Increase canvas height.
+        */
+
+        const taggedCanvas =
+            document.createElement("canvas");
+
+
+        taggedCanvas.width =
+            canvas.width;
+
+
+        taggedCanvas.height =
+            canvas.height + panelHeight;
+
+
+        const taggedCtx =
+            taggedCanvas.getContext("2d");
+
+
+        taggedCtx.drawImage(
+            image,
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        /*
+            Background panel.
+        */
+
+        taggedCtx.fillStyle =
+            "rgba(0,0,0,0.78)";
+
+        taggedCtx.fillRect(
+            0,
+            canvas.height,
+            taggedCanvas.width,
+            panelHeight
+        );
+
+
+        const fontSize =
+            Math.max(
+                16,
+                Math.round(canvas.width * 0.025)
+            );
+
+
+        taggedCtx.fillStyle =
+            "#ffffff";
+
+        taggedCtx.font =
+            "bold " + fontSize + "px Arial";
+
+
+        taggedCtx.fillText(
+            "📍 " +
+            (
+                currentLocationName ||
+                "GPS Location"
+            ),
+            20,
+            canvas.height + fontSize + 10
+        );
+
+
+        taggedCtx.font =
+            Math.round(fontSize * 0.8)
+            + "px Arial";
+
+
+        taggedCtx.fillText(
+            "GPS: "
+            + currentLatitude.toFixed(6)
+            + ", "
+            + currentLongitude.toFixed(6),
+            20,
+            canvas.height + fontSize * 2 + 15
+        );
+
+
+        taggedCtx.fillText(
+            "Captured: "
+            + new Date().toLocaleString("en-IN"),
+            20,
+            canvas.height + fontSize * 3 + 20
+        );
+
+
+        geoTaggedPhotoData =
+            taggedCanvas.toDataURL(
+                "image/jpeg",
+                0.90
+            );
+
+
+        /*
+            Show geo-tagged image in preview.
+        */
+
+        document.getElementById("photoPreview")
+            .src =
+            geoTaggedPhotoData;
+
+
+        document.getElementById("photoInfo")
+            .textContent =
+            "✓ Photo geo-tagged with location and capture time.";
+
+    };
+
+
+    image.src =
+        imageData;
+
+}
+
+
+/* =========================================================
+   GENERATE COMPLAINT ID
+========================================================= */
+
+function generateComplaintId(){
+
+    const date =
+        new Date();
+
+
+    const yyyy =
+        date.getFullYear();
+
+
+    const mm =
+        String(date.getMonth()+1)
+            .padStart(2,"0");
+
+
+    const dd =
+        String(date.getDate())
+            .padStart(2,"0");
+
+
+    const random =
+        Math.floor(
+            1000 + Math.random() * 9000
+        );
+
+
+    return (
+        "CITYOPS-"
+        + yyyy
+        + mm
+        + dd
+        + "-"
+        + random
+    );
+
+}
+
+
+/* =========================================================
+   SUBMIT COMPLAINT
+========================================================= */
+
+document
+    .getElementById("complaintForm")
+    .addEventListener(
+        "submit",
+        function(event){
+
+            event.preventDefault();
+
+
+            const submitButton =
+                document.getElementById(
+                    "submitButton"
+                );
+
+
+            const message =
+                document.getElementById(
+                    "message"
+                );
+
+
+            const citizenName =
+                document.getElementById(
+                    "citizenName"
+                ).value.trim();
+
+
+            const mobile =
+                document.getElementById(
+                    "mobile"
+                ).value.trim();
+
+
+            const address =
+                document.getElementById(
+                    "address"
+                ).value.trim();
+
+
+            const landmark =
+                document.getElementById(
+                    "landmark"
+                ).value.trim();
+
+
+            const description =
+                document.getElementById(
+                    "description"
+                ).value.trim();
+
+
+            /*
+                Validate address.
+            */
+
+            if(!address){
+
+                showMessage(
+                    "Please enter the problem address.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /*
+                Validate description.
+            */
+
+            if(!description){
+
+                showMessage(
+                    "Please describe the complaint.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /*
+                Mobile validation if entered.
+            */
+
+            if(
+                mobile &&
+                !/^[0-9]{10}$/.test(mobile)
+            ){
+
+                showMessage(
+                    "Please enter a valid 10-digit mobile number.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /*
+                Require live location.
+            */
+
+            if(
+                currentLatitude === null ||
+                currentLongitude === null
+            ){
+
+                showMessage(
+                    "Please detect your live location before submitting.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /*
+                Require photo.
+            */
+
+            if(!originalPhotoData){
+
+                showMessage(
+                    "Please upload or capture a complaint photo.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            submitButton.disabled =
+                true;
+
+            submitButton.textContent =
+                "REGISTERING COMPLAINT...";
+
+
+            /*
+                Generate ID.
+            */
+
+            const complaintId =
+                generateComplaintId();
+
+
+            /*
+                Create complaint object.
+            */
+
+            const complaint = {
+
+                id: complaintId,
+
+                complaintId: complaintId,
+
+                category: selectedCategory,
+
+                citizen:
+                    citizenName || "Anonymous",
+
+                mobile:
+                    mobile || "Not provided",
+
+                address: address,
+
+                landmark: landmark,
+
+                location:
+                    currentLocationName,
+
+                latitude:
+                    currentLatitude,
+
+                longitude:
+                    currentLongitude,
+
+                accuracy:
+                    currentAccuracy,
+
+                description:
+                    description,
+
+                /*
+                    Original citizen photo
+                */
+
+                beforePhoto:
+                    originalPhotoData,
+
+                /*
+                    Geo-tagged photo
+                */
+
+                geoTaggedPhoto:
+                    geoTaggedPhotoData ||
+                    originalPhotoData,
+
+                photo:
+                    geoTaggedPhotoData ||
+                    originalPhotoData,
+
+                status:
+                    "Registered",
+
+                workerStatus:
+                    "Not Assigned",
+
+                adminStatus:
+                    "Pending",
+
+                notification:
+                    false,
+
+                createdAt:
+                    new Date().toISOString(),
+
+                workerResolution:
+                    null,
+
+                afterPhoto:
+                    null,
+
+                adminDecision:
+                    null
+
+            };
+
+
+            /*
+                Get existing complaints.
+            */
+
+            let complaints = [];
+
+
+            try{
+
+                complaints =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "complaints"
+                        )
+                    ) || [];
+
+            }
+
+            catch(error){
+
+                complaints = [];
+
+            }
+
+
+            /*
+                Add new complaint.
+            */
+
+            complaints.push(
+                complaint
+            );
+
+
+            /*
+                Save complaints.
+            */
+
+            localStorage.setItem(
+                "complaints",
+                JSON.stringify(complaints)
+            );
+
+
+            /*
+                Also save the latest complaint.
+            */
+
+            localStorage.setItem(
+                "lastComplaint",
+                JSON.stringify(complaint)
+            );
+
+
+            /*
+                Save tracking ID separately.
+            */
+
+            localStorage.setItem(
+                "lastTrackingId",
+                complaintId
+            );
+
+
+            /*
+                Show success.
+            */
+
+            showMessage(
+                "Complaint registered successfully. Your Tracking ID is "
+                + complaintId,
+                "success"
+            );
+
+
+            /*
+                Go to tracking page after 2 seconds.
+            */
+
+            setTimeout(
+                function(){
+
+                    window.location.href =
+                        "track.html?id="
+                        + encodeURIComponent(
+                            complaintId
+                        );
+
+                },
+                2000
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   SHOW MESSAGE
+========================================================= */
+
+function showMessage(
+    text,
+    type
+){
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.textContent =
+        text;
+
+
+    message.className =
+        "message "
+        + type;
+
+
+    message.style.display =
+        "block";
+
+
+    message.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+}
+
+</script>
+
+</body>
+</html>

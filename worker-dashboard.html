@@ -1,0 +1,3753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Worker Dashboard | Indian Government</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f8fd;
+    color: #102d5c;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    height: 82px;
+    background: white;
+    border-bottom: 1px solid #dce6f2;
+
+    display: flex;
+    align-items: center;
+}
+
+.header-inner {
+    width: 94%;
+    max-width: 1450px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    text-decoration: none;
+    color: #102d5c;
+}
+
+.emblem {
+    font-size: 38px;
+}
+
+.brand h1 {
+    font-size: 23px;
+    margin-bottom: 3px;
+}
+
+.brand p {
+    color: #56708f;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #102d5c;
+
+    padding: 12px 18px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.nav a:hover {
+    background: #eef5fc;
+}
+
+.nav .active {
+    background: #1269d5;
+    color: white;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container {
+    width: 94%;
+    max-width: 1450px;
+
+    margin: 30px auto 50px;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.page-header {
+    margin-bottom: 25px;
+}
+
+.page-header h2 {
+    font-size: 30px;
+    margin-bottom: 7px;
+}
+
+.page-header p {
+    color: #607895;
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 28px;
+}
+
+.stat-card {
+    background: white;
+
+    border: 1px solid #dce6f2;
+    border-radius: 15px;
+
+    padding: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow:
+        0 5px 18px rgba(30,70,110,0.06);
+}
+
+.stat-number {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: #607895;
+    font-size: 14px;
+}
+
+.stat-icon {
+    width: 44px;
+    height: 44px;
+
+    border-radius: 10px;
+
+    background: #edf4fc;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+}
+
+
+/* =========================================================
+   COMPLAINT SECTION
+========================================================= */
+
+.complaint-section {
+    background: white;
+
+    border: 1px solid #dce6f2;
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 18px rgba(30,70,110,0.05);
+}
+
+.section-header {
+    padding: 22px 25px;
+
+    border-bottom: 1px solid #dce6f2;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-header h2 {
+    font-size: 21px;
+}
+
+.search-box {
+    width: 280px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #cbd9e9;
+    border-radius: 8px;
+
+    outline: none;
+
+    font-size: 14px;
+}
+
+.search-box:focus {
+    border-color: #1269d5;
+}
+
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+.filters {
+    padding: 16px 25px;
+
+    display: flex;
+    gap: 10px;
+
+    border-bottom: 1px solid #dce6f2;
+
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 18px;
+
+    border: 1px solid #cbd9e9;
+
+    background: white;
+
+    border-radius: 8px;
+
+    color: #31567f;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    font-size: 13px;
+}
+
+.filter-btn:hover {
+    background: #eef5fc;
+}
+
+.filter-btn.active {
+    background: #1269d5;
+    color: white;
+
+    border-color: #1269d5;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 1050px;
+}
+
+thead {
+    background: #f7faff;
+}
+
+th {
+    text-align: left;
+
+    padding: 15px 20px;
+
+    font-size: 13px;
+
+    color: #31567f;
+
+    border-bottom: 1px solid #dce6f2;
+}
+
+td {
+    padding: 17px 20px;
+
+    border-bottom: 1px solid #edf2f7;
+
+    font-size: 14px;
+
+    color: #183e6b;
+}
+
+tr:hover {
+    background: #fafcff;
+}
+
+.complaint-id {
+    color: #1269d5;
+
+    font-weight: bold;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   PRIORITY
+========================================================= */
+
+.priority {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 7px 11px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.priority.high {
+    background: #fff0f0;
+    color: #d62f2f;
+}
+
+.priority.medium {
+    background: #fff6e6;
+    color: #d98200;
+}
+
+.priority.low {
+    background: #edf9ef;
+    color: #16813d;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status {
+    display: inline-block;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.status.registered {
+    background: #fff5dc;
+    color: #b77700;
+}
+
+.status.in-progress {
+    background: #eaf3ff;
+    color: #1269d5;
+}
+
+.status.resolved {
+    background: #e8f8ed;
+    color: #16813d;
+}
+
+.status.review {
+    background: #fff1dc;
+    color: #d87900;
+}
+
+.status.improvement {
+    background: #fff0e6;
+    color: #e66f00;
+}
+
+
+/* =========================================================
+   VIEW BUTTON
+========================================================= */
+
+.view-btn {
+    border: none;
+
+    background: #eaf3ff;
+
+    color: #1269d5;
+
+    padding: 9px 16px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    font-size: 13px;
+}
+
+.view-btn:hover {
+    background: #dcecff;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(13,36,65,0.62);
+
+    z-index: 1000;
+
+    padding: 25px;
+}
+
+.modal.show {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    width: 100%;
+
+    max-width: 820px;
+
+    max-height: 92vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    position: relative;
+}
+
+.close {
+    position: absolute;
+
+    right: 22px;
+    top: 20px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #eef3f8;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    color: #183e6b;
+}
+
+.modal-title {
+    font-size: 24px;
+
+    margin-bottom: 25px;
+
+    padding-right: 45px;
+}
+
+
+/* =========================================================
+   DETAIL GRID
+========================================================= */
+
+.detail-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.detail-box {
+    background: #f6f9fd;
+
+    padding: 16px;
+
+    border-radius: 10px;
+}
+
+.detail-label {
+    display: block;
+
+    color: #68809e;
+
+    font-size: 12px;
+
+    margin-bottom: 5px;
+}
+
+.detail-value {
+    font-weight: bold;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.description-box {
+    background: #f6f9fd;
+
+    padding: 17px;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+}
+
+.description-box p {
+    margin-top: 7px;
+
+    color: #31567f;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   EVIDENCE SECTION
+========================================================= */
+
+.evidence-section {
+    border-top: 1px solid #dce6f2;
+
+    padding-top: 22px;
+
+    margin-top: 20px;
+}
+
+.evidence-section h3 {
+    font-size: 19px;
+
+    margin-bottom: 8px;
+}
+
+.evidence-description {
+    color: #607895;
+
+    font-size: 13px;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   PHOTO GRID
+========================================================= */
+
+.photo-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 16px;
+}
+
+.photo-card {
+    border: 1px solid #dce6f2;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    background: white;
+}
+
+.photo-card.before {
+    border-top: 4px solid #e63956;
+}
+
+.photo-card.after {
+    border-top: 4px solid #16813d;
+}
+
+.photo-title {
+    padding: 14px 15px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+}
+
+.before-title {
+    color: #d62f2f;
+}
+
+.after-title {
+    color: #16813d;
+}
+
+.photo-display {
+    min-height: 230px;
+
+    margin: 0 12px 12px;
+
+    background: #f3f7fc;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 8px;
+}
+
+.photo-display img {
+    max-width: 100%;
+
+    max-height: 330px;
+
+    object-fit: contain;
+
+    border-radius: 7px;
+
+    display: block;
+}
+
+.no-photo {
+    text-align: center;
+
+    color: #7186a1;
+
+    padding: 30px;
+
+    font-size: 14px;
+}
+
+.no-photo-icon {
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   VIEW IMAGE
+========================================================= */
+
+.image-view-btn {
+    width: calc(100% - 24px);
+
+    margin: 0 12px 14px;
+
+    border: none;
+
+    background: #e7f1ff;
+
+    color: #1269d5;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.image-view-btn:hover {
+    background: #d9eaff;
+}
+
+
+/* =========================================================
+   WORKER UPLOAD
+========================================================= */
+
+.upload-section {
+    border-top: 1px solid #dce6f2;
+
+    padding-top: 22px;
+
+    margin-top: 22px;
+}
+
+.upload-section h3 {
+    font-size: 19px;
+
+    margin-bottom: 8px;
+}
+
+.upload-section p {
+    color: #607895;
+
+    font-size: 13px;
+
+    margin-bottom: 15px;
+
+    line-height: 1.5;
+}
+
+.file-input {
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px dashed #9eb4cb;
+
+    border-radius: 10px;
+
+    background: #f8fbfe;
+
+    cursor: pointer;
+}
+
+.preview {
+    display: none;
+
+    margin-top: 15px;
+
+    text-align: center;
+}
+
+.preview.show {
+    display: block;
+}
+
+.preview img {
+    max-width: 100%;
+
+    max-height: 300px;
+
+    border-radius: 10px;
+
+    border: 1px solid #dce6f2;
+}
+
+.complete-btn {
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #16813d;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.complete-btn:hover {
+    background: #116b32;
+}
+
+.complete-btn:disabled {
+    background: #8aa99a;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.message {
+    display: none;
+
+    margin-top: 15px;
+
+    padding: 13px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+}
+
+.message.show {
+    display: block;
+}
+
+.message.success {
+    background: #eaf8ef;
+
+    color: #16813d;
+
+    border: 1px solid #b9dfc7;
+}
+
+.message.error {
+    background: #fff0f0;
+
+    color: #c53030;
+
+    border: 1px solid #f0c0c0;
+}
+
+
+/* =========================================================
+   IMAGE POPUP
+========================================================= */
+
+.image-modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.78);
+
+    z-index: 3000;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px;
+}
+
+.image-modal.show {
+    display: flex;
+}
+
+.image-modal-content {
+    position: relative;
+
+    max-width: 95vw;
+
+    max-height: 95vh;
+
+    background: white;
+
+    padding: 15px;
+
+    border-radius: 12px;
+}
+
+.image-modal-content img {
+    max-width: 90vw;
+
+    max-height: 88vh;
+
+    object-fit: contain;
+
+    display: block;
+
+    border-radius: 8px;
+}
+
+.image-modal-close {
+    position: absolute;
+
+    top: -16px;
+
+    right: -16px;
+
+    width: 38px;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: white;
+
+    color: #102d5c;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    background: #082453;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 22px;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width: 800px) {
+
+    header {
+        height: auto;
+
+        padding: 15px 0;
+    }
+
+    .header-inner {
+        width: 95%;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .nav {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal {
+        padding: 10px;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+<div class="header-inner">
+
+<a href="index.html" class="brand">
+
+<div class="emblem">
+🏛️
+</div>
+
+<div>
+
+<h1>Indian Government</h1>
+
+<p>
+Citizen First • Cleaner Cities • Stronger India
+</p>
+
+</div>
+
+</a>
+
+
+<nav class="nav">
+
+<a href="index.html">
+Home
+</a>
+
+<a href="worker-dashboard.html" class="active">
+Worker Dashboard
+</a>
+
+<a href="worker-login.html">
+Logout
+</a>
+
+</nav>
+
+</div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+<div class="page-header">
+
+<h2>
+Worker Dashboard
+</h2>
+
+<p>
+View complaints, complete assigned work and submit the completed-work photo for admin approval.
+</p>
+
+</div>
+
+
+
+<!-- =====================================================
+     STATISTICS
+===================================================== -->
+
+<section class="stats">
+
+
+<div class="stat-card">
+
+<div>
+
+<div
+class="stat-number"
+id="registeredCount">
+0
+</div>
+
+<div class="stat-label">
+Total Complaints
+</div>
+
+</div>
+
+<div class="stat-icon">
+📋
+</div>
+
+</div>
+
+
+
+<div class="stat-card">
+
+<div>
+
+<div
+class="stat-number"
+id="progressCount">
+0
+</div>
+
+<div class="stat-label">
+In Progress
+</div>
+
+</div>
+
+<div class="stat-icon">
+🔄
+</div>
+
+</div>
+
+
+
+<div class="stat-card">
+
+<div>
+
+<div
+class="stat-number"
+id="resolvedCount">
+0
+</div>
+
+<div class="stat-label">
+Resolved
+</div>
+
+</div>
+
+<div class="stat-icon">
+✓
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     COMPLAINT MANAGEMENT
+===================================================== -->
+
+<section class="complaint-section">
+
+
+<div class="section-header">
+
+<h2>
+Complaint Management
+</h2>
+
+<input
+type="text"
+id="searchInput"
+class="search-box"
+placeholder="Search complaint..."
+>
+
+</div>
+
+
+
+<!-- =====================================================
+     FILTERS
+===================================================== -->
+
+<div class="filters">
+
+<button
+class="filter-btn active"
+data-filter="all">
+All
+</button>
+
+<button
+class="filter-btn"
+data-filter="high">
+🔴 High Priority
+</button>
+
+<button
+class="filter-btn"
+data-filter="medium">
+🟠 Medium Priority
+</button>
+
+<button
+class="filter-btn"
+data-filter="low">
+🟢 Low Priority
+</button>
+
+</div>
+
+
+
+<!-- =====================================================
+     TABLE
+===================================================== -->
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Complaint ID
+</th>
+
+<th>
+Priority
+</th>
+
+<th>
+Category
+</th>
+
+<th>
+Citizen
+</th>
+
+<th>
+Location
+</th>
+
+<th>
+Status
+</th>
+
+<th>
+Action
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="complaintTable">
+</tbody>
+
+
+</table>
+
+</div>
+
+</section>
+
+</main>
+
+
+
+<!-- =====================================================
+     COMPLAINT MODAL
+===================================================== -->
+
+<div
+class="modal"
+id="complaintModal"
+>
+
+<div class="modal-content">
+
+
+<button
+class="close"
+type="button"
+onclick="closeModal()">
+×
+</button>
+
+
+<h2
+class="modal-title"
+id="modalTitle">
+Complaint Details
+</h2>
+
+
+
+<!-- =====================================================
+     DETAILS
+===================================================== -->
+
+<div class="detail-grid">
+
+
+<div class="detail-box">
+
+<span class="detail-label">
+Complaint ID
+</span>
+
+<span
+class="detail-value"
+id="detailId">
+-
+</span>
+
+</div>
+
+
+
+<div class="detail-box">
+
+<span class="detail-label">
+Priority
+</span>
+
+<span
+class="detail-value"
+id="detailPriority">
+-
+</span>
+
+</div>
+
+
+
+<div class="detail-box">
+
+<span class="detail-label">
+Category
+</span>
+
+<span
+class="detail-value"
+id="detailCategory">
+-
+</span>
+
+</div>
+
+
+
+<div class="detail-box">
+
+<span class="detail-label">
+Citizen
+</span>
+
+<span
+class="detail-value"
+id="detailCitizen">
+-
+</span>
+
+</div>
+
+
+
+<div class="detail-box">
+
+<span class="detail-label">
+Location
+</span>
+
+<span
+class="detail-value"
+id="detailLocation">
+-
+</span>
+
+</div>
+
+
+
+<div class="detail-box">
+
+<span class="detail-label">
+Status
+</span>
+
+<span
+class="detail-value"
+id="detailStatus">
+-
+</span>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     DESCRIPTION
+===================================================== -->
+
+<div class="description-box">
+
+<span class="detail-label">
+Complaint Description
+</span>
+
+<p id="detailDescription">
+-
+</p>
+
+</div>
+
+
+
+<!-- =====================================================
+     COMPLAINT EVIDENCE
+===================================================== -->
+
+<div class="evidence-section">
+
+<h3>
+📷 Complaint Evidence
+</h3>
+
+<p class="evidence-description">
+Before photo uploaded by citizen and completed work photo uploaded by worker.
+</p>
+
+
+<div class="photo-grid">
+
+
+<!-- BEFORE PHOTO -->
+
+<div class="photo-card before">
+
+<div class="photo-title before-title">
+🔴 Before — Problem Photo
+</div>
+
+
+<div
+class="photo-display"
+id="beforePhotoContainer"
+>
+
+<div class="no-photo">
+
+<div class="no-photo-icon">
+📷
+</div>
+
+<div>
+Loading citizen photo...
+</div>
+
+</div>
+
+</div>
+
+
+<button
+type="button"
+class="image-view-btn"
+id="viewBeforeButton"
+style="display:none;"
+>
+🔍 View Before Image
+</button>
+
+
+</div>
+
+
+
+<!-- AFTER PHOTO -->
+
+<div class="photo-card after">
+
+<div class="photo-title after-title">
+🟢 After — Completed Work Photo
+</div>
+
+
+<div
+class="photo-display"
+id="afterPhotoContainer"
+>
+
+<div class="no-photo">
+
+<div class="no-photo-icon">
+🔧
+</div>
+
+<div>
+Worker has not uploaded a completed work photo yet.
+</div>
+
+</div>
+
+</div>
+
+
+<button
+type="button"
+class="image-view-btn"
+id="viewAfterButton"
+style="display:none;"
+>
+🔍 View Completed Work Image
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     WORKER UPLOAD
+===================================================== -->
+
+<div class="upload-section">
+
+<h3>
+👷 Completed Work
+</h3>
+
+<p>
+Upload a clear photo showing the issue after the work has been completed. The photo will be stored with this complaint and will be visible to the admin for approval.
+</p>
+
+
+<input
+type="file"
+id="afterPhoto"
+class="file-input"
+accept="image/*"
+>
+
+
+<div
+class="preview"
+id="imagePreview"
+>
+
+<img
+id="previewImage"
+src=""
+alt="Completed work preview"
+>
+
+</div>
+
+
+<div
+class="message"
+id="resolutionMessage">
+</div>
+
+
+<button
+type="button"
+class="complete-btn"
+id="submitButton"
+onclick="submitResolution()"
+>
+
+✓ SUBMIT COMPLETED WORK FOR ADMIN APPROVAL
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     IMAGE VIEWER
+===================================================== -->
+
+<div
+class="image-modal"
+id="imageModal"
+>
+
+<div class="image-modal-content">
+
+<button
+type="button"
+class="image-modal-close"
+onclick="closeImageViewer()">
+×
+</button>
+
+<img
+id="largeImage"
+src=""
+alt="Complaint image"
+>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+<span>♥</span>
+
+Cleaner Cities
+&nbsp; | &nbsp;
+
+Safer Communities
+&nbsp; | &nbsp;
+
+<strong>Stronger India</strong>
+
+</footer>
+
+
+
+<script>
+
+/* =========================================================
+   WORKER DASHBOARD
+========================================================= */
+
+
+/*
+   STORE ALL COMPLAINTS
+*/
+
+let complaints = [];
+
+
+/*
+   CURRENT FILTER
+*/
+
+let currentFilter = "all";
+
+
+/*
+   CURRENT COMPLAINT
+*/
+
+let selectedComplaint = null;
+
+
+/*
+   CURRENT BEFORE IMAGE
+*/
+
+let currentBeforeImage = null;
+
+
+/*
+   CURRENT AFTER IMAGE
+*/
+
+let currentAfterImage = null;
+
+
+/* =========================================================
+   LOAD COMPLAINTS
+========================================================= */
+
+function loadComplaints() {
+
+    const possibleKeys = [
+
+        "complaints",
+
+        "allComplaints",
+
+        "citizenComplaints"
+
+    ];
+
+
+    let found = false;
+
+
+    for (
+        let i = 0;
+        i < possibleKeys.length;
+        i++
+    ) {
+
+        const key =
+            possibleKeys[i];
+
+        const raw =
+            localStorage.getItem(key);
+
+
+        if (!raw) {
+            continue;
+        }
+
+
+        try {
+
+            const parsed =
+                JSON.parse(raw);
+
+
+            if (Array.isArray(parsed)) {
+
+                complaints =
+                    parsed;
+
+                found = true;
+
+                break;
+            }
+
+
+            if (
+                parsed &&
+                Array.isArray(parsed.complaints)
+            ) {
+
+                complaints =
+                    parsed.complaints;
+
+                found = true;
+
+                break;
+            }
+
+        }
+
+        catch(error) {
+
+            console.log(
+                "Could not read:",
+                key
+            );
+
+        }
+
+    }
+
+
+    if (!found) {
+
+        complaints = [];
+
+    }
+
+
+    renderComplaints();
+
+    updateStats();
+
+}
+
+
+/* =========================================================
+   GET COMPLAINT ID
+========================================================= */
+
+function getComplaintId(complaint) {
+
+    return String(
+
+        complaint.id ||
+
+        complaint.complaintId ||
+
+        complaint.complaintID ||
+
+        complaint.trackingId ||
+
+        ""
+
+    );
+
+}
+
+
+/* =========================================================
+   PRIORITY
+========================================================= */
+
+function getPriority(complaint) {
+
+    if (
+        complaint.priority
+    ) {
+
+        return String(
+            complaint.priority
+        ).toLowerCase();
+
+    }
+
+
+    /*
+       AUTOMATIC FALLBACK
+    */
+
+    const category =
+        String(
+            complaint.category ||
+            complaint.issueCategory ||
+            ""
+        ).toLowerCase();
+
+
+    if (
+
+        category.includes("pothole") ||
+
+        category.includes("water") ||
+
+        category.includes("leak") ||
+
+        category.includes("streetlight")
+
+    ) {
+
+        return "high";
+
+    }
+
+
+    if (
+
+        category.includes("drainage") ||
+
+        category.includes("garbage")
+
+    ) {
+
+        return "medium";
+
+    }
+
+
+    return "low";
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function getStatus(complaint) {
+
+    return (
+
+        complaint.status ||
+
+        complaint.adminStatus ||
+
+        "Registered"
+
+    );
+
+}
+
+
+/* =========================================================
+   STATUS CLASS
+========================================================= */
+
+function getStatusClass(status) {
+
+    const value =
+        String(status)
+        .toLowerCase();
+
+
+    if (
+        value.includes("progress")
+    ) {
+
+        return "in-progress";
+
+    }
+
+
+    if (
+        value.includes("resolved")
+    ) {
+
+        return "resolved";
+
+    }
+
+
+    if (
+
+        value.includes("review") ||
+
+        value.includes("approval") ||
+
+        value.includes("waiting")
+
+    ) {
+
+        return "review";
+
+    }
+
+
+    if (
+        value.includes("improvement")
+    ) {
+
+        return "improvement";
+
+    }
+
+
+    return "registered";
+
+}
+
+
+/* =========================================================
+   FIND PHOTO
+========================================================= */
+
+function findPhotoValue(
+    complaint,
+    type
+) {
+
+    if (!complaint) {
+        return null;
+    }
+
+
+    let possible = [];
+
+
+    /*
+       BEFORE PHOTO
+    */
+
+    if (type === "before") {
+
+        possible = [
+
+            complaint.beforePhoto,
+
+            complaint.before_photo,
+
+            complaint.beforeImage,
+
+            complaint.before_image,
+
+            complaint.problemPhoto,
+
+            complaint.problem_photo,
+
+            complaint.problemImage,
+
+            complaint.problem_image,
+
+            complaint.complaintPhoto,
+
+            complaint.complaint_photo,
+
+            complaint.complaintImage,
+
+            complaint.complaint_image,
+
+            complaint.evidencePhoto,
+
+            complaint.evidence_photo,
+
+            complaint.image,
+
+            complaint.imageUrl,
+
+            complaint.photo,
+
+            complaint.photoUrl,
+
+            complaint.citizenPhoto,
+
+            complaint.citizen_photo,
+
+            complaint.uploadedPhoto,
+
+            complaint.uploaded_photo,
+
+            complaint.evidence &&
+                complaint.evidence.beforePhoto,
+
+            complaint.evidence &&
+                complaint.evidence.before_photo,
+
+            complaint.evidence &&
+                complaint.evidence.problemPhoto,
+
+            complaint.evidence &&
+                complaint.evidence.problem_photo,
+
+            complaint.evidence &&
+                complaint.evidence.image,
+
+            complaint.evidence &&
+                complaint.evidence.photo,
+
+            complaint.photos &&
+                complaint.photos.before,
+
+            complaint.photos &&
+                complaint.photos.beforePhoto,
+
+            complaint.images &&
+                complaint.images.before,
+
+            complaint.images &&
+                complaint.images.beforePhoto
+
+        ];
+
+    }
+
+
+    /*
+       AFTER PHOTO
+    */
+
+    if (type === "after") {
+
+        possible = [
+
+            complaint.afterPhoto,
+
+            complaint.after_photo,
+
+            complaint.afterImage,
+
+            complaint.after_image,
+
+            complaint.completedPhoto,
+
+            complaint.completed_photo,
+
+            complaint.completedWorkPhoto,
+
+            complaint.completed_work_photo,
+
+            complaint.resolutionPhoto,
+
+            complaint.resolution_photo,
+
+            complaint.workerPhoto,
+
+            complaint.worker_photo,
+
+            complaint.workerResolution &&
+                complaint.workerResolution.photo,
+
+            complaint.workerResolution &&
+                complaint.workerResolution.image,
+
+            complaint.photos &&
+                complaint.photos.after,
+
+            complaint.photos &&
+                complaint.photos.afterPhoto,
+
+            complaint.images &&
+                complaint.images.after,
+
+            complaint.images &&
+                complaint.images.afterPhoto
+
+        ];
+
+    }
+
+
+    /*
+       FIND FIRST VALID STRING
+    */
+
+    for (
+        let i = 0;
+        i < possible.length;
+        i++
+    ) {
+
+        const value =
+            possible[i];
+
+
+        if (
+            typeof value === "string" &&
+            value.trim() !== ""
+        ) {
+
+            return value;
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =========================================================
+   RENDER TABLE
+========================================================= */
+
+function renderComplaints() {
+
+    const table =
+        document.getElementById(
+            "complaintTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    /*
+       PRIORITY ORDER
+       HIGH → MEDIUM → LOW
+    */
+
+    const priorityOrder = {
+
+        high: 1,
+
+        medium: 2,
+
+        low: 3
+
+    };
+
+
+    let filtered =
+        [...complaints];
+
+
+    /*
+       SORT
+    */
+
+    filtered.sort(
+        function(a, b) {
+
+            const priorityA =
+                priorityOrder[
+                    getPriority(a)
+                ] || 99;
+
+
+            const priorityB =
+                priorityOrder[
+                    getPriority(b)
+                ] || 99;
+
+
+            return priorityA - priorityB;
+
+        }
+    );
+
+
+    /*
+       FILTER
+    */
+
+    if (
+        currentFilter !== "all"
+    ) {
+
+        filtered =
+            filtered.filter(
+                function(complaint) {
+
+                    return (
+                        getPriority(
+                            complaint
+                        ) === currentFilter
+                    );
+
+                }
+            );
+
+    }
+
+
+    /*
+       SEARCH
+    */
+
+    const search =
+        document
+            .getElementById(
+                "searchInput"
+            )
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    if (search) {
+
+        filtered =
+            filtered.filter(
+                function(complaint) {
+
+                    const text = `
+
+                        ${getComplaintId(complaint)}
+
+                        ${complaint.category || ""}
+
+                        ${complaint.citizen || ""}
+
+                        ${complaint.name || ""}
+
+                        ${complaint.location || ""}
+
+                        ${complaint.status || ""}
+
+                    `.toLowerCase();
+
+
+                    return text.includes(
+                        search
+                    );
+
+                }
+            );
+
+    }
+
+
+    /*
+       EMPTY
+    */
+
+    if (
+        filtered.length === 0
+    ) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="7"
+                    style="
+                        text-align:center;
+                        padding:45px;
+                        color:#68809e;
+                    "
+                >
+
+                    No complaints found.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    /*
+       CREATE ROWS
+    */
+
+    filtered.forEach(
+        function(complaint) {
+
+            const id =
+                getComplaintId(
+                    complaint
+                ) || "-";
+
+
+            const category =
+                complaint.category ||
+                complaint.issueCategory ||
+                "General";
+
+
+            const citizen =
+                complaint.citizen ||
+                complaint.citizenName ||
+                complaint.name ||
+                "Anonymous";
+
+
+            const location =
+                formatLocation(
+                    complaint.location ||
+                    complaint.address ||
+                    complaint.area
+                );
+
+
+            const priority =
+                getPriority(
+                    complaint
+                );
+
+
+            const status =
+                getStatus(
+                    complaint
+                );
+
+
+            const row =
+                document.createElement("tr");
+
+
+            row.innerHTML = `
+
+                <td>
+
+                    <span class="complaint-id">
+
+                        ${escapeHTML(id)}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <span
+                        class="priority ${priority}"
+                    >
+
+                        ${
+                            priority === "high"
+                            ? "🔴 HIGH"
+                            : priority === "medium"
+                            ? "🟠 MEDIUM"
+                            : "🟢 LOW"
+                        }
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(category)}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(citizen)}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(location)}
+
+                </td>
+
+
+                <td>
+
+                    <span
+                        class="status ${getStatusClass(status)}"
+                    >
+
+                        ${escapeHTML(status)}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <button
+                        type="button"
+                        class="view-btn"
+                        onclick="openComplaintById('${escapeAttribute(id)}')"
+                    >
+
+                        View
+
+                    </button>
+
+                </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+function formatLocation(location) {
+
+    if (!location) {
+
+        return "Not provided";
+
+    }
+
+
+    if (
+        typeof location === "object"
+    ) {
+
+        return (
+
+            location.address ||
+
+            location.name ||
+
+            location.area ||
+
+            location.location ||
+
+            JSON.stringify(location)
+
+        );
+
+    }
+
+
+    return String(location);
+
+}
+
+
+/* =========================================================
+   OPEN COMPLAINT
+========================================================= */
+
+function openComplaintById(id) {
+
+    const complaint =
+        complaints.find(
+            function(item) {
+
+                return (
+                    getComplaintId(item) ===
+                    String(id)
+                );
+
+            }
+        );
+
+
+    if (!complaint) {
+
+        alert(
+            "Complaint could not be found."
+        );
+
+        return;
+
+    }
+
+
+    openComplaint(
+        complaint
+    );
+
+}
+
+
+/* =========================================================
+   OPEN COMPLAINT MODAL
+========================================================= */
+
+function openComplaint(
+    complaint
+) {
+
+    selectedComplaint =
+        complaint;
+
+
+    const id =
+        getComplaintId(
+            complaint
+        );
+
+
+    const priority =
+        getPriority(
+            complaint
+        );
+
+
+    const category =
+        complaint.category ||
+        complaint.issueCategory ||
+        "General";
+
+
+    const citizen =
+        complaint.citizen ||
+        complaint.citizenName ||
+        complaint.name ||
+        "Anonymous";
+
+
+    const location =
+        formatLocation(
+            complaint.location ||
+            complaint.address ||
+            complaint.area
+        );
+
+
+    const status =
+        getStatus(
+            complaint
+        );
+
+
+    const description =
+        complaint.description ||
+        complaint.complaintDescription ||
+        complaint.details ||
+        "No description provided.";
+
+
+    /*
+       DETAILS
+    */
+
+    document
+        .getElementById("detailId")
+        .textContent =
+            id || "-";
+
+
+    document
+        .getElementById("detailPriority")
+        .textContent =
+            priority.toUpperCase();
+
+
+    document
+        .getElementById("detailCategory")
+        .textContent =
+            category;
+
+
+    document
+        .getElementById("detailCitizen")
+        .textContent =
+            citizen;
+
+
+    document
+        .getElementById("detailLocation")
+        .textContent =
+            location;
+
+
+    document
+        .getElementById("detailStatus")
+        .textContent =
+            status;
+
+
+    document
+        .getElementById("detailDescription")
+        .textContent =
+            description;
+
+
+    /*
+       BEFORE PHOTO
+    */
+
+    currentBeforeImage =
+        findPhotoValue(
+            complaint,
+            "before"
+        );
+
+
+    displayPhoto(
+        "beforePhotoContainer",
+        currentBeforeImage,
+        "No before photo uploaded by citizen."
+    );
+
+
+    const beforeButton =
+        document.getElementById(
+            "viewBeforeButton"
+        );
+
+
+    if (currentBeforeImage) {
+
+        beforeButton.style.display =
+            "block";
+
+    }
+
+    else {
+
+        beforeButton.style.display =
+            "none";
+
+    }
+
+
+    /*
+       AFTER PHOTO
+    */
+
+    currentAfterImage =
+        findPhotoValue(
+            complaint,
+            "after"
+        );
+
+
+    displayPhoto(
+        "afterPhotoContainer",
+        currentAfterImage,
+        "Worker has not uploaded a completed work photo yet."
+    );
+
+
+    const afterButton =
+        document.getElementById(
+            "viewAfterButton"
+        );
+
+
+    if (currentAfterImage) {
+
+        afterButton.style.display =
+            "block";
+
+    }
+
+    else {
+
+        afterButton.style.display =
+            "none";
+
+    }
+
+
+    /*
+       RESET WORKER UPLOAD
+    */
+
+    const fileInput =
+        document.getElementById(
+            "afterPhoto"
+        );
+
+
+    fileInput.value = "";
+
+
+    document
+        .getElementById(
+            "imagePreview"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    document
+        .getElementById(
+            "previewImage"
+        )
+        .src = "";
+
+
+    hideMessage();
+
+
+    /*
+       SHOW MODAL
+    */
+
+    document
+        .getElementById(
+            "complaintModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+/* =========================================================
+   DISPLAY PHOTO
+========================================================= */
+
+function displayPhoto(
+    containerId,
+    imageSource,
+    emptyText
+) {
+
+    const container =
+        document.getElementById(
+            containerId
+        );
+
+
+    container.innerHTML = "";
+
+
+    if (
+        typeof imageSource === "string" &&
+        imageSource.trim() !== ""
+    ) {
+
+        const img =
+            document.createElement(
+                "img"
+            );
+
+
+        img.src =
+            imageSource;
+
+
+        img.alt =
+            "Complaint evidence";
+
+
+        img.onerror =
+            function() {
+
+                container.innerHTML = `
+
+                    <div class="no-photo">
+
+                        <div class="no-photo-icon">
+                            ⚠️
+                        </div>
+
+                        <div>
+                            Image could not be loaded.
+                        </div>
+
+                    </div>
+
+                `;
+
+            };
+
+
+        container.appendChild(
+            img
+        );
+
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="no-photo">
+
+            <div class="no-photo-icon">
+                📷
+            </div>
+
+            <div>
+                ${escapeHTML(emptyText)}
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CLOSE COMPLAINT
+========================================================= */
+
+function closeModal() {
+
+    document
+        .getElementById(
+            "complaintModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    selectedComplaint =
+        null;
+
+
+    currentBeforeImage =
+        null;
+
+
+    currentAfterImage =
+        null;
+
+
+    document
+        .getElementById(
+            "afterPhoto"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "imagePreview"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    document
+        .getElementById(
+            "previewImage"
+        )
+        .src = "";
+
+}
+
+
+/* =========================================================
+   WORKER PHOTO PREVIEW
+========================================================= */
+
+document
+    .getElementById(
+        "afterPhoto"
+    )
+    .addEventListener(
+        "change",
+        function() {
+
+            const file =
+                this.files[0];
+
+
+            if (!file) {
+                return;
+            }
+
+
+            if (
+                !file.type.startsWith(
+                    "image/"
+                )
+            ) {
+
+                alert(
+                    "Please select a valid image file."
+                );
+
+                this.value = "";
+
+                return;
+
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function(event) {
+
+                    const preview =
+                        document.getElementById(
+                            "previewImage"
+                        );
+
+
+                    preview.src =
+                        event.target.result;
+
+
+                    document
+                        .getElementById(
+                            "imagePreview"
+                        )
+                        .classList.add(
+                            "show"
+                        );
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   SUBMIT COMPLETED WORK
+========================================================= */
+
+function submitResolution() {
+
+    if (!selectedComplaint) {
+
+        alert(
+            "Please select a complaint first."
+        );
+
+        return;
+
+    }
+
+
+    const fileInput =
+        document.getElementById(
+            "afterPhoto"
+        );
+
+
+    if (
+        !fileInput.files ||
+        !fileInput.files.length
+    ) {
+
+        alert(
+            "Please upload the completed work photo first."
+        );
+
+        return;
+
+    }
+
+
+    const file =
+        fileInput.files[0];
+
+
+    if (
+        !file.type.startsWith(
+            "image/"
+        )
+    ) {
+
+        alert(
+            "Please select a valid image."
+        );
+
+        return;
+
+    }
+
+
+    const button =
+        document.getElementById(
+            "submitButton"
+        );
+
+
+    button.disabled =
+        true;
+
+
+    button.textContent =
+        "Uploading...";
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        function(event) {
+
+            const afterPhoto =
+                event.target.result;
+
+
+            const complaintId =
+                getComplaintId(
+                    selectedComplaint
+                );
+
+
+            const index =
+                complaints.findIndex(
+                    function(complaint) {
+
+                        return (
+                            getComplaintId(
+                                complaint
+                            ) ===
+                            complaintId
+                        );
+
+                    }
+                );
+
+
+            if (index === -1) {
+
+                alert(
+                    "Complaint could not be found."
+                );
+
+
+                button.disabled =
+                    false;
+
+
+                button.textContent =
+                    "✓ SUBMIT COMPLETED WORK FOR ADMIN APPROVAL";
+
+
+                return;
+
+            }
+
+
+            /*
+               SAVE AFTER PHOTO
+            */
+
+            complaints[index].afterPhoto =
+                afterPhoto;
+
+
+            complaints[index].afterPhotoName =
+                file.name;
+
+
+            /*
+               WORKER INFORMATION
+            */
+
+            complaints[index].workerId =
+                localStorage.getItem(
+                    "workerId"
+                ) || "WORKER001";
+
+
+            complaints[index].workerSubmitted =
+                true;
+
+
+            complaints[index].workerSubmittedAt =
+                new Date().toISOString();
+
+
+            /*
+               WORKER STATUS
+            */
+
+            complaints[index].workerStatus =
+                "Completed";
+
+
+            /*
+               ADMIN STATUS
+            */
+
+            complaints[index].adminStatus =
+                "Pending Approval";
+
+
+            /*
+               IMPORTANT:
+               NOT FINALLY RESOLVED YET
+            */
+
+            complaints[index].status =
+                "Resolved / Review";
+
+
+            complaints[index].workerResolution = {
+
+                photo:
+                    afterPhoto,
+
+                photoName:
+                    file.name,
+
+                workerId:
+                    complaints[index].workerId,
+
+                submittedAt:
+                    complaints[index].workerSubmittedAt,
+
+                status:
+                    "Submitted for admin approval"
+
+            };
+
+
+            /*
+               SAVE TO LOCAL STORAGE
+            */
+
+            localStorage.setItem(
+                "complaints",
+                JSON.stringify(
+                    complaints
+                )
+            );
+
+
+            /*
+               SAVE LAST COMPLAINT
+            */
+
+            localStorage.setItem(
+                "lastComplaint",
+                JSON.stringify(
+                    complaints[index]
+                )
+            );
+
+
+            /*
+               SUCCESS MESSAGE
+            */
+
+            showMessage(
+                "Completed work photo submitted successfully. It is now waiting for admin approval.",
+                "success"
+            );
+
+
+            /*
+               UPDATE CURRENT COMPLAINT
+            */
+
+            selectedComplaint =
+                complaints[index];
+
+
+            currentAfterImage =
+                afterPhoto;
+
+
+            /*
+               UPDATE PHOTO DISPLAY
+            */
+
+            displayPhoto(
+                "afterPhotoContainer",
+                afterPhoto,
+                ""
+            );
+
+
+            document
+                .getElementById(
+                    "viewAfterButton"
+                )
+                .style.display =
+                    "block";
+
+
+            /*
+               UPDATE STATUS
+            */
+
+            document
+                .getElementById(
+                    "detailStatus"
+                )
+                .textContent =
+                    "Resolved / Review";
+
+
+            /*
+               UPDATE TABLE
+            */
+
+            renderComplaints();
+
+            updateStats();
+
+
+            /*
+               RESET UPLOAD
+            */
+
+            fileInput.value = "";
+
+
+            document
+                .getElementById(
+                    "imagePreview"
+                )
+                .classList.remove(
+                    "show"
+                );
+
+
+            /*
+               RESET BUTTON
+            */
+
+            button.disabled =
+                false;
+
+
+            button.textContent =
+                "✓ SUBMITTED — WAITING FOR ADMIN APPROVAL";
+
+        };
+
+
+    reader.onerror =
+        function() {
+
+            alert(
+                "The image could not be read. Please try again."
+            );
+
+
+            button.disabled =
+                false;
+
+
+            button.textContent =
+                "✓ SUBMIT COMPLETED WORK FOR ADMIN APPROVAL";
+
+        };
+
+
+    reader.readAsDataURL(
+        file
+    );
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+function showMessage(
+    text,
+    type
+) {
+
+    const message =
+        document.getElementById(
+            "resolutionMessage"
+        );
+
+
+    message.textContent =
+        text;
+
+
+    message.className =
+        "message show " +
+        type;
+
+}
+
+
+function hideMessage() {
+
+    const message =
+        document.getElementById(
+            "resolutionMessage"
+        );
+
+
+    message.textContent = "";
+
+    message.className =
+        "message";
+
+}
+
+
+/* =========================================================
+   VIEW BEFORE IMAGE
+========================================================= */
+
+document
+    .getElementById(
+        "viewBeforeButton"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            if (
+                currentBeforeImage
+            ) {
+
+                openImageViewer(
+                    currentBeforeImage
+                );
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   VIEW AFTER IMAGE
+========================================================= */
+
+document
+    .getElementById(
+        "viewAfterButton"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            if (
+                currentAfterImage
+            ) {
+
+                openImageViewer(
+                    currentAfterImage
+                );
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   IMAGE VIEWER
+========================================================= */
+
+function openImageViewer(
+    image
+) {
+
+    if (!image) {
+        return;
+    }
+
+
+    document
+        .getElementById(
+            "largeImage"
+        )
+        .src =
+            image;
+
+
+    document
+        .getElementById(
+            "imageModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+function closeImageViewer() {
+
+    document
+        .getElementById(
+            "imageModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    document
+        .getElementById(
+            "largeImage"
+        )
+        .src = "";
+
+}
+
+
+/* =========================================================
+   FILTER BUTTONS
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".filter-btn"
+    )
+    .forEach(
+        function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    document
+                        .querySelectorAll(
+                            ".filter-btn"
+                        )
+                        .forEach(
+                            function(btn) {
+
+                                btn.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                    this.classList.add(
+                        "active"
+                    );
+
+
+                    currentFilter =
+                        this.dataset.filter;
+
+
+                    renderComplaints();
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+document
+    .getElementById(
+        "searchInput"
+    )
+    .addEventListener(
+        "input",
+        function() {
+
+            renderComplaints();
+
+        }
+    );
+
+
+/* =========================================================
+   CLICK OUTSIDE MODAL
+========================================================= */
+
+document
+    .getElementById(
+        "complaintModal"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   CLICK OUTSIDE IMAGE VIEWER
+========================================================= */
+
+document
+    .getElementById(
+        "imageModal"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                closeImageViewer();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeModal();
+
+            closeImageViewer();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   UPDATE STATISTICS
+========================================================= */
+
+function updateStats() {
+
+    let progress = 0;
+
+    let resolved = 0;
+
+
+    complaints.forEach(
+        function(complaint) {
+
+            const status =
+                getStatus(
+                    complaint
+                ).toLowerCase();
+
+
+            if (
+                status.includes(
+                    "progress"
+                )
+            ) {
+
+                progress++;
+
+            }
+
+            else if (
+                status.includes(
+                    "resolved"
+                )
+            ) {
+
+                resolved++;
+
+            }
+
+        }
+    );
+
+
+    document
+        .getElementById(
+            "registeredCount"
+        )
+        .textContent =
+            complaints.length;
+
+
+    document
+        .getElementById(
+            "progressCount"
+        )
+        .textContent =
+            progress;
+
+
+    document
+        .getElementById(
+            "resolvedCount"
+        )
+        .textContent =
+            resolved;
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        String(value);
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================================================
+   ESCAPE ATTRIBUTE
+========================================================= */
+
+function escapeAttribute(value) {
+
+    return String(value)
+        .replace(
+            /\\/g,
+            "\\\\"
+        )
+        .replace(
+            /'/g,
+            "\\'"
+        );
+
+}
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadComplaints();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

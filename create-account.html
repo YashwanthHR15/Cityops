@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Create Citizen Account | Indian Government</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f8fd;
+    color: #102d5c;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* ================= HEADER ================= */
+
+header {
+    height: 82px;
+    background: white;
+    border-bottom: 1px solid #dce6f2;
+
+    display: flex;
+    align-items: center;
+}
+
+.header-inner {
+    width: 92%;
+    max-width: 1200px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    text-decoration: none;
+    color: #102d5c;
+}
+
+.emblem {
+    font-size: 38px;
+}
+
+.brand h1 {
+    font-size: 23px;
+    margin-bottom: 3px;
+}
+
+.brand p {
+    color: #56708f;
+    font-size: 13px;
+}
+
+/* ================= MAIN ================= */
+
+.register-area {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 45px 20px;
+}
+
+.register-card {
+    width: 100%;
+    max-width: 500px;
+
+    background: white;
+
+    border: 1px solid #dce6f2;
+    border-radius: 20px;
+
+    padding: 38px;
+
+    box-shadow: 0 15px 40px rgba(30, 70, 110, 0.10);
+}
+
+/* ================= TITLE ================= */
+
+.register-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.citizen-icon {
+    width: 72px;
+    height: 72px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    background: #e8f2fd;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 34px;
+}
+
+.register-title h2 {
+    font-size: 29px;
+    margin-bottom: 8px;
+}
+
+.register-title p {
+    color: #607895;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ================= FORM ================= */
+
+.form-group {
+    margin-bottom: 19px;
+}
+
+.form-group label {
+    display: block;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+
+    padding: 14px 15px;
+
+    border: 1px solid #cbd9e9;
+    border-radius: 10px;
+
+    background: #fbfdff;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+input:focus {
+    border-color: #1269d5;
+
+    box-shadow: 0 0 0 3px rgba(18, 105, 213, 0.10);
+}
+
+/* ================= ID CHECK ================= */
+
+.id-check {
+    min-height: 18px;
+
+    margin-top: 7px;
+
+    font-size: 13px;
+}
+
+.available {
+    color: #16834a;
+}
+
+.exists {
+    color: #c53030;
+}
+
+/* ================= PASSWORD ================= */
+
+.password-note {
+    color: #607895;
+
+    font-size: 12px;
+
+    margin-top: 6px;
+}
+
+/* ================= BUTTON ================= */
+
+.register-button {
+    width: 100%;
+
+    border: none;
+
+    background: #1269d5;
+
+    color: white;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-top: 5px;
+}
+
+.register-button:hover {
+    background: #0758bd;
+}
+
+.register-button:disabled {
+    background: #9bb9dc;
+    cursor: not-allowed;
+}
+
+/* ================= MESSAGE ================= */
+
+.message {
+    display: none;
+
+    margin-top: 17px;
+
+    padding: 13px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    text-align: center;
+
+    line-height: 1.5;
+}
+
+.success {
+    display: block;
+
+    background: #edf9f2;
+
+    color: #16834a;
+
+    border: 1px solid #b9e3c9;
+}
+
+.error {
+    display: block;
+
+    background: #fff0f0;
+
+    color: #c53030;
+
+    border: 1px solid #f0c0c0;
+}
+
+/* ================= LOGIN LINK ================= */
+
+.login-link {
+    display: block;
+
+    text-align: center;
+
+    margin-top: 22px;
+
+    padding: 13px;
+
+    background: #f4f8fc;
+
+    border-radius: 9px;
+
+    color: #1269d5;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.login-link:hover {
+    background: #eaf2fb;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #082453;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 22px;
+
+    font-size: 14px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    header {
+        height: auto;
+        padding: 15px 0;
+    }
+
+    .register-card {
+        padding: 28px 22px;
+    }
+
+    .register-title h2 {
+        font-size: 26px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="header-inner">
+
+        <a href="index.html" class="brand">
+
+            <div class="emblem">
+                🇮🇳
+            </div>
+
+            <div>
+
+                <h1>Indian Government</h1>
+
+                <p>
+                    Citizens First • Cleaner Cities • Stronger India
+                </p>
+
+            </div>
+
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- ================= REGISTER SECTION ================= -->
+
+<main class="register-area">
+
+    <div class="register-card">
+
+        <div class="register-title">
+
+            <div class="citizen-icon">
+                👤
+            </div>
+
+            <h2>
+                Create Citizen Account
+            </h2>
+
+            <p>
+                Create your account to access the Citizen Grievance Portal.
+            </p>
+
+        </div>
+
+
+        <!-- ================= FORM ================= -->
+
+        <form id="registerForm">
+
+            <!-- FULL NAME -->
+
+            <div class="form-group">
+
+                <label for="fullName">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="fullName"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                >
+
+            </div>
+
+
+            <!-- CITIZEN ID -->
+
+            <div class="form-group">
+
+                <label for="citizenId">
+                    Create Citizen ID
+                </label>
+
+                <input
+                    type="text"
+                    id="citizenId"
+                    placeholder="Example: ashwin123"
+                    autocomplete="username"
+                    required
+                >
+
+                <div
+                    id="idCheck"
+                    class="id-check"
+                ></div>
+
+            </div>
+
+
+            <!-- MOBILE -->
+
+            <div class="form-group">
+
+                <label for="mobile">
+                    Mobile Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="mobile"
+                    placeholder="Enter 10-digit mobile number"
+                    maxlength="10"
+                    autocomplete="tel"
+                    required
+                >
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create your password"
+                    autocomplete="new-password"
+                    required
+                >
+
+                <div class="password-note">
+                    Password must contain at least 6 characters.
+                </div>
+
+            </div>
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Re-enter your password"
+                    autocomplete="new-password"
+                    required
+                >
+
+            </div>
+
+
+            <!-- CREATE ACCOUNT -->
+
+            <button
+                type="submit"
+                id="registerButton"
+                class="register-button"
+            >
+                Create Account
+                
+            </button>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+        </form>
+
+
+        <!-- ================= LOGIN ================= -->
+
+        <a
+            href="login.html"
+            class="login-link"
+        >
+            Already have an account? Login here
+        </a>
+
+    </div>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <span>♥</span>
+
+    Cleaner Cities
+    &nbsp; | &nbsp;
+    Safer Communities
+    &nbsp; | &nbsp;
+
+    <strong>
+        Stronger India
+    </strong>
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+/*
+=========================================================
+CITIZEN ACCOUNT SYSTEM
+=========================================================
+
+All registered citizen accounts are stored in:
+
+    localStorage
+
+under:
+
+    citizenAccounts
+*/
+
+
+const registerForm =
+    document.getElementById("registerForm");
+
+const fullNameInput =
+    document.getElementById("fullName");
+
+const citizenIdInput =
+    document.getElementById("citizenId");
+
+const mobileInput =
+    document.getElementById("mobile");
+
+const passwordInput =
+    document.getElementById("password");
+
+const confirmPasswordInput =
+    document.getElementById("confirmPassword");
+
+const idCheck =
+    document.getElementById("idCheck");
+
+const registerButton =
+    document.getElementById("registerButton");
+
+const message =
+    document.getElementById("message");
+
+
+/*
+=========================================================
+GET ALL CITIZEN ACCOUNTS
+=========================================================
+*/
+
+function getCitizenAccounts() {
+
+    const savedAccounts =
+        localStorage.getItem("citizenAccounts");
+
+
+    if (!savedAccounts) {
+
+        return [];
+
+    }
+
+
+    try {
+
+        const accounts =
+            JSON.parse(savedAccounts);
+
+
+        if (Array.isArray(accounts)) {
+
+            return accounts;
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Error reading citizen accounts:",
+            error
+        );
+
+    }
+
+
+    return [];
+
+}
+
+
+/*
+=========================================================
+SAVE CITIZEN ACCOUNTS
+=========================================================
+*/
+
+function saveCitizenAccounts(accounts) {
+
+    localStorage.setItem(
+        "citizenAccounts",
+        JSON.stringify(accounts)
+    );
+
+}
+
+
+/*
+=========================================================
+CHECK WHETHER CITIZEN ID EXISTS
+=========================================================
+*/
+
+function citizenIdExists(citizenId) {
+
+    const accounts =
+        getCitizenAccounts();
+
+
+    return accounts.some(function(account) {
+
+        return String(account.citizenId)
+            .trim()
+            .toLowerCase() ===
+            citizenId.trim().toLowerCase();
+
+    });
+
+}
+
+
+/*
+=========================================================
+CHECK CITIZEN ID WHILE TYPING
+=========================================================
+*/
+
+function checkCitizenId() {
+
+    const citizenId =
+        citizenIdInput.value.trim();
+
+
+    if (citizenId === "") {
+
+        idCheck.textContent = "";
+
+        idCheck.className =
+            "id-check";
+
+        registerButton.disabled = false;
+
+        return;
+
+    }
+
+
+    /*
+    ID FORMAT
+    */
+
+    const validId =
+        /^[A-Za-z0-9_-]+$/;
+
+
+    if (!validId.test(citizenId)) {
+
+        idCheck.textContent =
+            "✕ Use only letters, numbers, _ or -.";
+
+        idCheck.className =
+            "id-check exists";
+
+        registerButton.disabled = true;
+
+        return;
+
+    }
+
+
+    /*
+    CHECK DUPLICATE
+    */
+
+    if (citizenIdExists(citizenId)) {
+
+        idCheck.textContent =
+            "✕ This Citizen ID already exists.";
+
+        idCheck.className =
+            "id-check exists";
+
+        registerButton.disabled = true;
+
+        return;
+
+    }
+
+
+    /*
+    AVAILABLE
+    */
+
+    idCheck.textContent =
+        "✓ Citizen ID is available.";
+
+    idCheck.className =
+        "id-check available";
+
+    registerButton.disabled = false;
+
+}
+
+
+/*
+=========================================================
+ID INPUT EVENT
+=========================================================
+*/
+
+citizenIdInput.addEventListener(
+    "input",
+    checkCitizenId
+);
+
+
+/*
+=========================================================
+MOBILE NUMBER
+=========================================================
+*/
+
+mobileInput.addEventListener(
+    "input",
+    function() {
+
+        this.value =
+            this.value.replace(/\D/g, "");
+
+    }
+);
+
+
+/*
+=========================================================
+REGISTER ACCOUNT
+=========================================================
+*/
+
+registerForm.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        /*
+        CLEAR MESSAGE
+        */
+
+        message.textContent = "";
+
+        message.className =
+            "message";
+
+
+        /*
+        GET VALUES
+        */
+
+        const fullName =
+            fullNameInput.value.trim();
+
+
+        const citizenId =
+            citizenIdInput.value.trim();
+
+
+        const mobile =
+            mobileInput.value.trim();
+
+
+        const password =
+            passwordInput.value;
+
+
+        const confirmPassword =
+            confirmPasswordInput.value;
+
+
+        /*
+        ================================
+        VALIDATE NAME
+        ================================
+        */
+
+        if (fullName.length < 2) {
+
+            showError(
+                "Please enter your full name."
+            );
+
+            fullNameInput.focus();
+
+            return;
+
+        }
+
+
+        /*
+        ================================
+        VALIDATE CITIZEN ID
+        ================================
+        */
+
+        if (citizenId.length < 3) {
+
+            showError(
+                "Citizen ID must contain at least 3 characters."
+            );
+
+            citizenIdInput.focus();
+
+            return;
+
+        }
+
+
+        if (!/^[A-Za-z0-9_-]+$/.test(citizenId)) {
+
+            showError(
+                "Citizen ID can contain only letters, numbers, _ and -."
+            );
+
+            citizenIdInput.focus();
+
+            return;
+
+        }
+
+
+        /*
+        ================================
+        CHECK DUPLICATE
+        ================================
+        */
+
+        if (citizenIdExists(citizenId)) {
+
+            showError(
+                "This Citizen ID already exists. Please choose another ID."
+            );
+
+            citizenIdInput.focus();
+
+            checkCitizenId();
+
+            return;
+
+        }
+
+
+        /*
+        ================================
+        VALIDATE MOBILE
+        ================================
+        */
+
+        if (!/^[0-9]{10}$/.test(mobile)) {
+
+            showError(
+                "Please enter a valid 10-digit mobile number."
+            );
+
+            mobileInput.focus();
+
+            return;
+
+        }
+
+
+        /*
+        ================================
+        VALIDATE PASSWORD
+        ================================
+        */
+
+        if (password.length < 6) {
+
+            showError(
+                "Password must contain at least 6 characters."
+            );
+
+            passwordInput.focus();
+
+            return;
+
+        }
+
+
+        /*
+        ================================
+        CONFIRM PASSWORD
+        ================================
+        */
+
+        if (password !== confirmPassword) {
+
+            showError(
+                "Passwords do not match."
+            );
+
+            confirmPasswordInput.focus();
+
+            return;
+
+        }
+
+
+        /*
+        ================================
+        GET EXISTING ACCOUNTS
+        ================================
+        */
+
+        const accounts =
+            getCitizenAccounts();
+
+
+        /*
+        ================================
+        CREATE NEW ACCOUNT
+        ================================
+        */
+
+        const newAccount = {
+
+            fullName: fullName,
+
+            citizenId: citizenId,
+
+            mobile: mobile,
+
+            password: password,
+
+            createdAt:
+                new Date().toISOString(),
+
+            status: "active"
+
+        };
+
+
+        /*
+        ================================
+        ADD ACCOUNT
+        ================================
+        */
+
+        accounts.push(newAccount);
+
+
+        /*
+        ================================
+        SAVE ACCOUNT
+        ================================
+        */
+
+        saveCitizenAccounts(accounts);
+
+
+        /*
+        ================================
+        ALSO SAVE CURRENT USER DATA
+        ================================
+        */
+
+        localStorage.setItem(
+            "citizenId",
+            citizenId
+        );
+
+        localStorage.setItem(
+            "citizenName",
+            fullName
+        );
+
+
+        /*
+        ================================
+        SUCCESS
+        ================================
+        */
+
+        message.textContent =
+            "✓ Account created successfully. Redirecting to login...";
+
+        message.className =
+            "message success";
+
+
+        /*
+        DISABLE BUTTON
+        */
+
+        registerButton.disabled = true;
+
+
+        /*
+        REDIRECT TO LOGIN
+        */
+
+        setTimeout(
+            function() {
+
+                window.location.href =
+                    "login.html";
+
+            },
+            1500
+        );
+
+    }
+);
+
+
+/*
+=========================================================
+SHOW ERROR
+=========================================================
+*/
+
+function showError(text) {
+
+    message.textContent =
+        text;
+
+    message.className =
+        "message error";
+
+}
+
+
+/*
+=========================================================
+INITIAL CHECK
+=========================================================
+*/
+
+checkCitizenId();
+
+</script>
+
+</body>
+</html>

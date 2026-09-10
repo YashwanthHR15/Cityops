@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Track Complaint | Indian Government</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f8fc;
+            color: #10254a;
+            min-height: 100vh;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            height: 102px;
+            background: #ffffff;
+            border-bottom: 1px solid #e3eaf2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .emblem {
+            width: 48px;
+            height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            color: #10254a;
+        }
+
+        .brand-text h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #0b2450;
+            margin-bottom: 5px;
+        }
+
+        .brand-text p {
+            font-size: 14px;
+            color: #466488;
+            letter-spacing: 0.2px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 38px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #0d2247;
+            font-size: 15px;
+            font-weight: 700;
+            transition: 0.2s ease;
+        }
+
+        nav a:hover {
+            color: #0866d8;
+        }
+
+        nav a.active {
+            background: #0868dc;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 13px;
+            box-shadow: 0 7px 18px rgba(8, 104, 220, 0.25);
+        }
+
+        .profile {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #edf5fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+            color: #173f72;
+        }
+
+        .logout-button {
+            border: none;
+            background: transparent;
+            color: #173f72;
+            font: inherit;
+            font-weight: 600;
+            padding: 14px 18px;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .logout-button:hover {
+            background: #fff0f0;
+            color: #c53030;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            text-align: center;
+            padding: 58px 20px 42px;
+            background:
+                linear-gradient(
+                    rgba(244, 248, 252, 0.94),
+                    rgba(244, 248, 252, 0.97)
+                );
+        }
+
+        .hero h2 {
+            font-size: 40px;
+            line-height: 1.2;
+            color: #092451;
+            margin-bottom: 14px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 17px;
+            color: #58708f;
+            line-height: 1.6;
+        }
+
+        /* ================= TRACK BOX ================= */
+
+        .track-wrapper {
+            width: min(850px, 92%);
+            margin: 0 auto;
+        }
+
+        .track-box {
+            background: white;
+            border-radius: 22px;
+            padding: 32px;
+            box-shadow: 0 12px 35px rgba(30, 65, 100, 0.10);
+            border: 1px solid #e0e9f3;
+            margin-bottom: 32px;
+        }
+
+        .track-box-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .track-box-title h3 {
+            font-size: 22px;
+            color: #102b55;
+            margin-bottom: 8px;
+        }
+
+        .track-box-title p {
+            color: #71859d;
+            font-size: 14px;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 12px;
+        }
+
+        .input-area input {
+            flex: 1;
+            height: 56px;
+            border: 1px solid #ccd9e7;
+            border-radius: 12px;
+            padding: 0 18px;
+            font-size: 16px;
+            color: #10254a;
+            outline: none;
+            background: #fbfdff;
+            transition: 0.2s ease;
+        }
+
+        .input-area input:focus {
+            border-color: #0868dc;
+            box-shadow: 0 0 0 4px rgba(8, 104, 220, 0.10);
+        }
+
+        .input-area button {
+            height: 56px;
+            padding: 0 28px;
+            border: none;
+            border-radius: 12px;
+            background: #0868dc;
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .input-area button:hover {
+            background: #0758ba;
+            transform: translateY(-1px);
+        }
+
+        .hint {
+            margin-top: 12px;
+            color: #8494a8;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        /* ================= ERROR ================= */
+
+        .error {
+            display: none;
+            background: #fff2f2;
+            border: 1px solid #ffcaca;
+            color: #b42318;
+            padding: 15px 18px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        /* ================= RESULT ================= */
+
+        #result {
+            display: none;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 22px;
+            border: 1px solid #e0e9f3;
+            box-shadow: 0 12px 35px rgba(30, 65, 100, 0.10);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .result-header {
+            background: linear-gradient(135deg, #0a5fbd, #0875e5);
+            color: white;
+            padding: 28px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .result-header h3 {
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+        .tracking-number {
+            font-size: 14px;
+            opacity: 0.92;
+        }
+
+        .status-badge {
+            background: white;
+            color: #0870d8;
+            padding: 10px 17px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        /* ================= COMPLAINT DETAILS ================= */
+
+        .details {
+            padding: 30px 32px;
+        }
+
+        .section-heading {
+            font-size: 19px;
+            color: #102b55;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .detail-item {
+            background: #f7faff;
+            border: 1px solid #e4edf6;
+            border-radius: 13px;
+            padding: 17px;
+        }
+
+        .detail-label {
+            font-size: 12px;
+            color: #74879e;
+            margin-bottom: 7px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            font-weight: 700;
+        }
+
+        .detail-value {
+            color: #172f55;
+            font-size: 15px;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        /* ================= TIMELINE ================= */
+
+        .timeline-section {
+            margin-top: 35px;
+            padding-top: 30px;
+            border-top: 1px solid #e6edf5;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 12px;
+            top: 10px;
+            bottom: 10px;
+            width: 3px;
+            background: #dfe8f1;
+            border-radius: 5px;
+        }
+
+        .timeline-step {
+            position: relative;
+            display: flex;
+            gap: 18px;
+            padding-bottom: 27px;
+        }
+
+        .timeline-step:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-dot {
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
+            background: #dce6f0;
+            border: 4px solid white;
+            box-shadow: 0 0 0 1px #d2dfea;
+            flex-shrink: 0;
+            z-index: 2;
+        }
+
+        .timeline-step.completed .timeline-dot {
+            background: #0c73df;
+            box-shadow: 0 0 0 1px #0c73df;
+        }
+
+        .timeline-step.current .timeline-dot {
+            background: #f3a712;
+            box-shadow: 0 0 0 4px rgba(243, 167, 18, 0.15);
+        }
+
+        .timeline-content h4 {
+            font-size: 16px;
+            color: #18345c;
+            margin-bottom: 5px;
+        }
+
+        .timeline-content p {
+            font-size: 13px;
+            color: #71849a;
+            line-height: 1.5;
+        }
+
+        .timeline-content .date {
+            font-size: 12px;
+            color: #9aa8b8;
+            margin-top: 5px;
+        }
+
+        /* ================= PHOTO ================= */
+
+        .photo-section {
+            margin-top: 35px;
+            padding-top: 30px;
+            border-top: 1px solid #e6edf5;
+        }
+
+        .complaint-photo {
+            width: 240px;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 1px solid #dce5ef;
+            display: none;
+        }
+
+        /* ================= EMPTY STATE ================= */
+
+        .empty-state {
+            text-align: center;
+            padding: 30px;
+            color: #74879e;
+        }
+
+        .empty-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 16px;
+            background: #edf5fc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            margin-top: 60px;
+            background: #0c2854;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 14px;
+            opacity: 0.92;
+        }
+
+        footer span {
+            margin: 0 8px;
+            opacity: 0.7;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 900px) {
+
+            header {
+                height: auto;
+                min-height: 90px;
+                padding: 16px 5%;
+            }
+
+            nav {
+                gap: 14px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .brand-text h1 {
+                font-size: 20px;
+            }
+
+            .brand-text p {
+                font-size: 12px;
+            }
+
+            .emblem {
+                width: 35px;
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .profile {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 40px;
+            }
+
+            .hero h2 {
+                font-size: 30px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .track-box {
+                padding: 22px;
+            }
+
+            .input-area {
+                flex-direction: column;
+            }
+
+            .input-area button {
+                width: 100%;
+            }
+
+            .result-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .details {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="brand">
+
+            <div class="emblem">
+                ⚖
+            </div>
+
+            <div class="brand-text">
+                <h1>Indian Government</h1>
+                <p>Citizens First • Cleaner Cities • Stronger India</p>
+            </div>
+
+        </div>
+
+        <nav>
+
+            <a href="index.html">Home</a>
+
+            <a href="complaint.html">
+                Raise Complaint
+            </a>
+
+            <a href="track.html" class="active">
+                Track Complaint
+            </a>
+
+            <button type="button" class="logout-button" id="logoutButton">
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <h2>Track Your Complaint</h2>
+
+        <p>
+            Enter your tracking ID to see the current status of your complaint.
+            No login required.
+        </p>
+
+    </section>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="track-wrapper">
+
+        <!-- TRACKING BOX -->
+
+        <section class="track-box">
+
+            <div class="track-box-title">
+
+                <h3>Check Complaint Status</h3>
+
+                <p>
+                    Use the tracking ID received after registering your complaint.
+                </p>
+
+            </div>
+
+
+            <div class="input-area">
+
+                <input
+                    type="text"
+                    id="trackingInput"
+                    placeholder="Enter Tracking ID e.g. IND-ABC123"
+                    autocomplete="off"
+                >
+
+                <button onclick="trackComplaint()">
+                    Track Complaint →
+                </button>
+
+            </div>
+
+            <div class="hint">
+                Example: IND-ABC12345
+            </div>
+
+
+            <div id="errorBox" class="error"></div>
+
+        </section>
+
+
+        <!-- RESULT -->
+
+        <section id="result">
+
+            <div class="result-card">
+
+                <!-- RESULT HEADER -->
+
+                <div class="result-header">
+
+                    <div>
+
+                        <h3 id="resultTitle">
+                            Complaint Found
+                        </h3>
+
+                        <div class="tracking-number">
+                            Tracking ID:
+                            <strong id="resultTrackingId"></strong>
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="status-badge"
+                        id="statusBadge"
+                    >
+                        Registered
+                    </div>
+
+                </div>
+
+
+                <!-- DETAILS -->
+
+                <div class="details">
+
+                    <h3 class="section-heading">
+                        Complaint Details
+                    </h3>
+
+
+                    <div class="detail-grid">
+
+                        <div class="detail-item">
+
+                            <div class="detail-label">
+                                Issue Category
+                            </div>
+
+                            <div
+                                class="detail-value"
+                                id="detailCategory"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <div class="detail-label">
+                                Complainant
+                            </div>
+
+                            <div
+                                class="detail-value"
+                                id="detailName"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <div class="detail-label">
+                                Mobile Number
+                            </div>
+
+                            <div
+                                class="detail-value"
+                                id="detailPhone"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <div class="detail-label">
+                                Date Registered
+                            </div>
+
+                            <div
+                                class="detail-value"
+                                id="detailDate"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <div class="detail-label">
+                                Address
+                            </div>
+
+                            <div
+                                class="detail-value"
+                                id="detailAddress"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <div class="detail-label">
+                                Location
+                            </div>
+
+                            <div
+                                class="detail-value"
+                                id="detailLocation"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <div class="detail-label">
+                                Landmark
+                            </div>
+
+                            <div
+                                class="detail-value"
+                                id="detailLandmark"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <div class="detail-label">
+                                Description
+                            </div>
+
+                            <div
+                                class="detail-value"
+                                id="detailDescription"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TIMELINE -->
+
+                    <div class="timeline-section">
+
+                        <h3 class="section-heading">
+                            Complaint Progress
+                        </h3>
+
+
+                        <div class="timeline">
+
+                            <div
+                                class="timeline-step completed"
+                                id="stepRegistered"
+                            >
+
+                                <div class="timeline-dot"></div>
+
+                                <div class="timeline-content">
+
+                                    <h4>
+                                        Complaint Registered
+                                    </h4>
+
+                                    <p>
+                                        Your complaint has been successfully
+                                        submitted.
+                                    </p>
+
+                                    <div
+                                        class="date"
+                                        id="registeredDate"
+                                    ></div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="timeline-step"
+                                id="stepAssigned"
+                            >
+
+                                <div class="timeline-dot"></div>
+
+                                <div class="timeline-content">
+
+                                    <h4>
+                                        Forwarded to Department
+                                    </h4>
+
+                                    <p>
+                                        The complaint is being routed to the
+                                        appropriate department.
+                                    </p>
+
+                                    <div
+                                        class="date"
+                                        id="assignedDate"
+                                    ></div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="timeline-step"
+                                id="stepProgress"
+                            >
+
+                                <div class="timeline-dot"></div>
+
+                                <div class="timeline-content">
+
+                                    <h4>
+                                        Work in Progress
+                                    </h4>
+
+                                    <p>
+                                        The concerned department is working
+                                        on your complaint.
+                                    </p>
+
+                                    <div
+                                        class="date"
+                                        id="progressDate"
+                                    ></div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="timeline-step"
+                                id="stepResolved"
+                            >
+
+                                <div class="timeline-dot"></div>
+
+                                <div class="timeline-content">
+
+                                    <h4>
+                                        Complaint Resolved
+                                    </h4>
+
+                                    <p>
+                                        The reported issue has been marked
+                                        as resolved.
+                                    </p>
+
+                                    <div
+                                        class="date"
+                                        id="resolvedDate"
+                                    ></div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PHOTO -->
+
+                    <div
+                        class="photo-section"
+                        id="photoSection"
+                    >
+
+                        <h3 class="section-heading">
+                            Submitted Photo
+                        </h3>
+
+                        <img
+                            id="complaintPhoto"
+                            class="complaint-photo"
+                            alt="Complaint photo"
+                        >
+
+                        <div
+                            id="noPhoto"
+                            style="color:#7b8da3;font-size:14px;"
+                        >
+                            No photo was attached to this complaint.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            ❤️ Cleaner Cities
+            <span>|</span>
+            Safer Communities
+            <span>|</span>
+            Stronger India
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        document
+            .getElementById("logoutButton")
+            .addEventListener("click", function(){
+
+                localStorage.removeItem("citizenLoggedIn");
+                localStorage.removeItem("currentCitizenId");
+                localStorage.removeItem("currentCitizenName");
+
+                window.location.href = "login.html";
+
+            });
+
+        /*
+         * ==========================================
+         * TRACK COMPLAINT SYSTEM
+         * ==========================================
+         *
+         * This page searches complaints saved by
+         * complaint.html in localStorage.
+         *
+         * It supports several common storage names
+         * so the page can work with your existing
+         * project without changing the other pages.
+         */
+
+
+        // ------------------------------------------
+        // GET ALL POSSIBLE COMPLAINT STORAGE
+        // ------------------------------------------
+
+        function getAllComplaints() {
+
+            let complaints = [];
+
+            const possibleKeys = [
+                "complaints",
+                "complaint",
+                "complaintsData",
+                "registeredComplaints",
+                "dsu_complaints",
+                "citizenComplaints",
+                "complaintData"
+            ];
+
+
+            possibleKeys.forEach(function(key) {
+
+                const stored = localStorage.getItem(key);
+
+                if (!stored) {
+                    return;
+                }
+
+                try {
+
+                    const parsed = JSON.parse(stored);
+
+                    if (Array.isArray(parsed)) {
+
+                        complaints = complaints.concat(parsed);
+
+                    }
+
+                    else if (
+                        parsed &&
+                        typeof parsed === "object"
+                    ) {
+
+                        if (Array.isArray(parsed.complaints)) {
+
+                            complaints =
+                                complaints.concat(
+                                    parsed.complaints
+                                );
+
+                        }
+
+                        else {
+
+                            complaints.push(parsed);
+
+                        }
+
+                    }
+
+                }
+
+                catch (error) {
+
+                    console.log(
+                        "Could not read:",
+                        key
+                    );
+
+                }
+
+            });
+
+
+            return complaints;
+
+        }
+
+
+        // ------------------------------------------
+        // NORMALIZE COMPLAINT
+        // ------------------------------------------
+
+        function normalizeComplaint(complaint) {
+
+            if (!complaint) {
+                return null;
+            }
+
+            return {
+
+                trackingId:
+                    complaint.trackingId ||
+                    complaint.trackingID ||
+                    complaint.id ||
+                    complaint.complaintId ||
+                    complaint.complaintID ||
+                    "",
+
+                category:
+                    complaint.category ||
+                    complaint.issue ||
+                    complaint.issueType ||
+                    complaint.type ||
+                    "Public Issue",
+
+                name:
+                    complaint.name ||
+                    complaint.userName ||
+                    complaint.fullName ||
+                    "Anonymous",
+
+                phone:
+                    complaint.phone ||
+                    complaint.mobile ||
+                    complaint.mobileNumber ||
+                    "Not provided",
+
+                address:
+                    complaint.address ||
+                    "Not provided",
+
+                landmark:
+                    complaint.landmark ||
+                    "Not provided",
+
+                location:
+                    complaint.locationName ||
+                    complaint.location ||
+                    complaint.place ||
+                    complaint.address ||
+                    "Location not available",
+
+                latitude:
+                    complaint.latitude ||
+                    complaint.lat ||
+                    "",
+
+                longitude:
+                    complaint.longitude ||
+                    complaint.lng ||
+                    "",
+
+                description:
+                    complaint.description ||
+                    complaint.details ||
+                    complaint.message ||
+                    "No description provided.",
+
+                photo:
+                    complaint.photo ||
+                    complaint.image ||
+                    complaint.photoData ||
+                    complaint.imageData ||
+                    "",
+
+                date:
+                    complaint.date ||
+                    complaint.createdAt ||
+                    complaint.submittedAt ||
+                    complaint.timestamp ||
+                    "",
+
+                status:
+                    complaint.status ||
+                    complaint.complaintStatus ||
+                    "Registered"
+
+            };
+
+        }
+
+
+        // ------------------------------------------
+        // FIND COMPLAINT
+        // ------------------------------------------
+
+        function findComplaint(trackingId) {
+
+            const complaints = getAllComplaints();
+
+            const normalizedId =
+                trackingId
+                    .trim()
+                    .toUpperCase();
+
+
+            for (
+                let i = 0;
+                i < complaints.length;
+                i++
+            ) {
+
+                const complaint =
+                    normalizeComplaint(
+                        complaints[i]
+                    );
+
+                if (!complaint) {
+                    continue;
+                }
+
+                if (
+                    String(
+                        complaint.trackingId
+                    )
+                    .trim()
+                    .toUpperCase()
+                    === normalizedId
+                ) {
+
+                    return complaint;
+
+                }
+
+            }
+
+
+            return null;
+
+        }
+
+
+        // ------------------------------------------
+        // FORMAT DATE
+        // ------------------------------------------
+
+        function formatDate(dateValue) {
+
+            if (!dateValue) {
+                return "Date not available";
+            }
+
+            const date =
+                new Date(dateValue);
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return String(dateValue);
+
+            }
+
+
+            return date.toLocaleDateString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+        // ------------------------------------------
+        // SET TEXT SAFELY
+        // ------------------------------------------
+
+        function setText(id, value) {
+
+            const element =
+                document.getElementById(id);
+
+            if (!element) {
+                return;
+            }
+
+            element.textContent =
+                value || "Not provided";
+
+        }
+
+
+        // ------------------------------------------
+        // SHOW ERROR
+        // ------------------------------------------
+
+        function showError(message) {
+
+            const errorBox =
+                document.getElementById(
+                    "errorBox"
+                );
+
+            errorBox.textContent =
+                message;
+
+            errorBox.style.display =
+                "block";
+
+            document.getElementById(
+                "result"
+            ).style.display = "none";
+
+        }
+
+
+        // ------------------------------------------
+        // HIDE ERROR
+        // ------------------------------------------
+
+        function hideError() {
+
+            document.getElementById(
+                "errorBox"
+            ).style.display = "none";
+
+        }
+
+
+        // ------------------------------------------
+        // RESET TIMELINE
+        // ------------------------------------------
+
+        function resetTimeline() {
+
+            const steps = [
+                "stepRegistered",
+                "stepAssigned",
+                "stepProgress",
+                "stepResolved"
+            ];
+
+            steps.forEach(function(id) {
+
+                const element =
+                    document.getElementById(id);
+
+                element.classList.remove(
+                    "completed"
+                );
+
+                element.classList.remove(
+                    "current"
+                );
+
+            });
+
+
+            document.getElementById(
+                "stepRegistered"
+            ).classList.add(
+                "completed"
+            );
+
+        }
+
+
+        // ------------------------------------------
+        // UPDATE STATUS
+        // ------------------------------------------
+
+        function updateStatus(status) {
+
+            resetTimeline();
+
+
+            const normalized =
+                String(status)
+                    .toLowerCase()
+                    .replace(
+                        /[_-]/g,
+                        " "
+                    );
+
+
+            const badge =
+                document.getElementById(
+                    "statusBadge"
+                );
+
+
+            if (
+                normalized.includes(
+                    "resolve"
+                ) ||
+                normalized.includes(
+                    "complete"
+                ) ||
+                normalized.includes(
+                    "closed"
+                )
+            ) {
+
+                badge.textContent =
+                    "Resolved";
+
+                document.getElementById(
+                    "stepAssigned"
+                ).classList.add(
+                    "completed"
+                );
+
+                document.getElementById(
+                    "stepProgress"
+                ).classList.add(
+                    "completed"
+                );
+
+                document.getElementById(
+                    "stepResolved"
+                ).classList.add(
+                    "completed"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                normalized.includes(
+                    "progress"
+                ) ||
+                normalized.includes(
+                    "working"
+                )
+            ) {
+
+                badge.textContent =
+                    "In Progress";
+
+                document.getElementById(
+                    "stepAssigned"
+                ).classList.add(
+                    "completed"
+                );
+
+                document.getElementById(
+                    "stepProgress"
+                ).classList.add(
+                    "current"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                normalized.includes(
+                    "assigned"
+                ) ||
+                normalized.includes(
+                    "forward"
+                )
+            ) {
+
+                badge.textContent =
+                    "Forwarded";
+
+                document.getElementById(
+                    "stepAssigned"
+                ).classList.add(
+                    "current"
+                );
+
+                return;
+
+            }
+
+
+            badge.textContent =
+                "Registered";
+
+        }
+
+
+        // ------------------------------------------
+        // DISPLAY COMPLAINT
+        // ------------------------------------------
+
+        function displayComplaint(
+            complaint
+        ) {
+
+            hideError();
+
+
+            document.getElementById(
+                "result"
+            ).style.display =
+                "block";
+
+
+            setText(
+                "resultTrackingId",
+                complaint.trackingId
+            );
+
+
+            setText(
+                "detailCategory",
+                complaint.category
+            );
+
+
+            setText(
+                "detailName",
+                complaint.name
+            );
+
+
+            setText(
+                "detailPhone",
+                complaint.phone
+            );
+
+
+            setText(
+                "detailDate",
+                formatDate(
+                    complaint.date
+                )
+            );
+
+
+            setText(
+                "detailAddress",
+                complaint.address
+            );
+
+
+            let locationText =
+                complaint.location;
+
+
+            if (
+                complaint.latitude &&
+                complaint.longitude
+            ) {
+
+                locationText +=
+                    " (" +
+                    complaint.latitude +
+                    ", " +
+                    complaint.longitude +
+                    ")";
+
+            }
+
+
+            setText(
+                "detailLocation",
+                locationText
+            );
+
+
+            setText(
+                "detailLandmark",
+                complaint.landmark
+            );
+
+
+            setText(
+                "detailDescription",
+                complaint.description
+            );
+
+
+            setText(
+                "registeredDate",
+                complaint.date
+                    ? formatDate(
+                        complaint.date
+                    )
+                    : ""
+            );
+
+
+            updateStatus(
+                complaint.status
+            );
+
+
+            // PHOTO
+
+            const photo =
+                document.getElementById(
+                    "complaintPhoto"
+                );
+
+            const noPhoto =
+                document.getElementById(
+                    "noPhoto"
+                );
+
+
+            if (complaint.photo) {
+
+                photo.src =
+                    complaint.photo;
+
+                photo.style.display =
+                    "block";
+
+                noPhoto.style.display =
+                    "none";
+
+            }
+
+            else {
+
+                photo.style.display =
+                    "none";
+
+                noPhoto.style.display =
+                    "block";
+
+            }
+
+
+            // Scroll to result
+
+            setTimeout(function() {
+
+                document.getElementById(
+                    "result"
+                ).scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }, 100);
+
+        }
+
+
+        // ------------------------------------------
+        // MAIN TRACK FUNCTION
+        // ------------------------------------------
+
+        function trackComplaint() {
+
+            const input =
+                document.getElementById(
+                    "trackingInput"
+                );
+
+            const trackingId =
+                input.value.trim();
+
+
+            if (!trackingId) {
+
+                showError(
+                    "Please enter your tracking ID."
+                );
+
+                input.focus();
+
+                return;
+
+            }
+
+
+            const complaint =
+                findComplaint(
+                    trackingId
+                );
+
+
+            if (!complaint) {
+
+                showError(
+                    "Complaint not found. Please check your tracking ID and try again."
+                );
+
+                return;
+
+            }
+
+
+            displayComplaint(
+                complaint
+            );
+
+        }
+
+
+        // ------------------------------------------
+        // ENTER KEY
+        // ------------------------------------------
+
+        document
+            .getElementById(
+                "trackingInput"
+            )
+            .addEventListener(
+                "keydown",
+                function(event) {
+
+                    if (
+                        event.key === "Enter"
+                    ) {
+
+                        trackComplaint();
+
+                    }
+
+                }
+            );
+
+
+        // ------------------------------------------
+        // AUTO TRACK FROM URL
+        // ------------------------------------------
+        //
+        // Example:
+        // track.html?id=IND-ABC123
+        //
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const urlId =
+            params.get("id");
+
+
+        if (urlId) {
+
+            document.getElementById(
+                "trackingInput"
+            ).value =
+                urlId;
+
+            trackComplaint();
+
+        }
+
+    </script>
+
+</body>
+</html>

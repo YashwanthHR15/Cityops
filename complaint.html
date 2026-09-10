@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raise a Complaint | Indian Government</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f3f8fd;
+    color:#0b1d43;
+}
+
+/* HEADER */
+header{
+    height:102px;
+    background:#fff;
+    border-bottom:1px solid #dce5ef;
+    display:flex;
+    align-items:center;
+}
+
+.header-inner{
+    width:94%;
+    max-width:1400px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+}
+
+.emblem{
+    width:50px;
+    height:68px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:42px;
+}
+
+.brand h1{
+    color:#102348;
+    font-size:25px;
+}
+
+.brand p{
+    color:#536986;
+    font-size:14px;
+    margin-top:4px;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:29px;
+}
+
+nav a{
+    color:#14294c;
+    text-decoration:none;
+    font-size:15px;
+    font-weight:600;
+}
+
+nav a.active{
+    color:white;
+    background:#0864d8;
+    padding:15px 22px;
+    border-radius:14px;
+    box-shadow:0 8px 20px rgba(8,100,216,.18);
+}
+
+.profile{
+    width:46px;
+    height:46px;
+    border:0;
+    border-radius:50%;
+    background:#edf4fc;
+    font-size:22px;
+}
+
+.logout-button{
+    border:0;
+    background:transparent;
+    color:#14294c;
+    font:inherit;
+    font-weight:600;
+    padding:15px 18px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.logout-button:hover{
+    background:#fff0f0;
+    color:#c53030;
+}
+
+/* HERO */
+.hero{
+    min-height:235px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+
+    background-image:
+        linear-gradient(rgba(224,240,255,.84),rgba(224,240,255,.91)),
+        url("https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1800&q=85");
+
+    background-size:cover;
+    background-position:center 48%;
+}
+
+.hero-content{
+    width:92%;
+    max-width:900px;
+}
+
+.hero h2{
+    font-size:40px;
+    color:#071a43;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#3d5775;
+    font-size:17px;
+    line-height:1.55;
+}
+
+.tricolor{
+    width:170px;
+    height:5px;
+    margin:18px auto 16px;
+    display:flex;
+    gap:3px;
+}
+
+.tricolor span{
+    flex:1;
+    border-radius:10px;
+}
+
+.orange{background:#f49a21;}
+.white{background:#fff;border:1px solid #d5dde7;}
+.green{background:#138546;}
+
+.tagline{
+    display:inline-block;
+    background:rgba(255,255,255,.72);
+    border-radius:30px;
+    padding:10px 28px;
+    color:#405978;
+    font-size:14px;
+    font-weight:600;
+}
+
+/* CARDS */
+.complaint-section{
+    width:94%;
+    max-width:1230px;
+    margin:0 auto;
+    padding:30px 0 25px;
+}
+
+.complaint-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.complaint-card{
+    background:#fff;
+    border:1px solid #e1e8ef;
+    border-radius:18px;
+    padding:14px;
+    box-shadow:0 7px 23px rgba(27,65,102,.07);
+    transition:.25s ease;
+}
+
+.complaint-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 16px 32px rgba(27,65,102,.13);
+}
+
+/* EXACT REFERENCE IMAGES */
+.card-image{
+    width:100%;
+    height:166px;
+    display:block;
+    object-fit:cover;
+    border-radius:17px;
+}
+
+/* content */
+.card-content{
+    text-align:center;
+    padding:15px 4px 3px;
+}
+
+.card-content h3{
+    color:#081b43;
+    font-size:19px;
+    margin-bottom:9px;
+}
+
+.card-content p{
+    min-height:48px;
+    color:#60758f;
+    font-size:14px;
+    line-height:1.55;
+    margin-bottom:17px;
+}
+
+.raise-button{
+    width:100%;
+    border:0;
+    border-radius:12px;
+    background:#e5f1ff;
+    color:#0057c8;
+    padding:12px 10px;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.raise-button:hover{
+    background:#0864d8;
+    color:#fff;
+}
+
+/* FOOTER */
+footer{
+    width:94%;
+    max-width:1230px;
+    min-height:54px;
+    margin:0 auto 18px;
+    background:#e8f2fc;
+    border-radius:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    color:#405978;
+    font-size:14px;
+}
+
+.heart{
+    color:#e94b43;
+    font-size:19px;
+}
+
+/* RESPONSIVE */
+@media(max-width:1050px){
+    .complaint-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:800px){
+    header{
+        height:auto;
+        padding:14px 0;
+    }
+
+    .header-inner{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    nav{
+        gap:14px;
+    }
+
+    .complaint-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .hero h2{
+        font-size:34px;
+    }
+}
+
+@media(max-width:550px){
+    nav a{
+        display:none;
+    }
+
+    nav a.active{
+        display:block;
+    }
+
+    .complaint-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        min-height:260px;
+    }
+
+    .hero h2{
+        font-size:29px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+
+        <a class="brand" href="index.html">
+            <div class="emblem">🏛️</div>
+
+            <div>
+                <h1>Indian Government</h1>
+                <p>Citizen First • Cleaner Cities • Stronger India</p>
+            </div>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="complaint.html" class="active">Raise Complaint</a>
+            <a href="track.html">Track Complaint</a>
+            <button type="button" class="logout-button" id="logoutButton">
+                Logout
+            </button>
+        </nav>
+
+    </div>
+</header>
+
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h2>Raise a Complaint</h2>
+
+        <p>
+            Select the issue category below to report a problem in your area.
+            <br>
+            Together for a Cleaner, Safer and Better India.
+        </p>
+
+        <div class="tricolor">
+            <span class="orange"></span>
+            <span class="white"></span>
+            <span class="green"></span>
+        </div>
+
+        <div class="tagline">
+            Your City&nbsp;&nbsp; • &nbsp;&nbsp;Your Voice&nbsp;&nbsp; • &nbsp;&nbsp;Our Responsibility
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="complaint-section">
+
+<div class="complaint-grid">
+
+
+<!-- 1 -->
+<div class="complaint-card">
+
+    <img class="card-image"
+         src="images/potholes.jpg"
+         alt="Potholes and damaged road">
+
+    <div class="card-content">
+
+        <h3>Potholes</h3>
+
+        <p>
+            Report damaged roads, potholes
+            and uneven surfaces.
+        </p>
+
+        <button class="raise-button"
+                onclick="selectCategory('Potholes')">
+            Raise Complaint&nbsp;&nbsp; →
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 2 -->
+<div class="complaint-card">
+
+    <img class="card-image"
+         src="images/streetlights.jpg"
+         alt="Damaged streetlight">
+
+    <div class="card-content">
+
+        <h3>Damaged Streetlights</h3>
+
+        <p>
+            Report non-working or damaged
+            streetlights.
+        </p>
+
+        <button class="raise-button"
+                onclick="selectCategory('Damaged Streetlights')">
+            Raise Complaint&nbsp;&nbsp; →
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 3 -->
+<div class="complaint-card">
+
+    <img class="card-image"
+         src="images/drainage.jpg"
+         alt="Drainage problem">
+
+    <div class="card-content">
+
+        <h3>Drainage Problems</h3>
+
+        <p>
+            Report clogged drains, water
+            logging or overflow.
+        </p>
+
+        <button class="raise-button"
+                onclick="selectCategory('Drainage Problems')">
+            Raise Complaint&nbsp;&nbsp; →
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 4 -->
+<div class="complaint-card">
+
+    <img class="card-image"
+         src="images/water-leaks.jpg"
+         alt="Water leak">
+
+    <div class="card-content">
+
+        <h3>Water Leaks</h3>
+
+        <p>
+            Report water leakage from pipelines,
+            taps or main supply.
+        </p>
+
+        <button class="raise-button"
+                onclick="selectCategory('Water Leaks')">
+            Raise Complaint&nbsp;&nbsp; →
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 5 -->
+<div class="complaint-card">
+
+    <img class="card-image"
+         src="images/garbage.jpg"
+         alt="Garbage overflow">
+
+    <div class="card-content">
+
+        <h3>Garbage Overflow</h3>
+
+        <p>
+            Report uncollected garbage,
+            overflowing bins or waste
+            management issues.
+        </p>
+
+        <button class="raise-button"
+                onclick="selectCategory('Garbage Overflow')">
+            Raise Complaint&nbsp;&nbsp; →
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 6 -->
+<div class="complaint-card">
+
+    <img class="card-image"
+         src="images/public-assets.jpg"
+         alt="Broken public bench">
+
+    <div class="card-content">
+
+        <h3>Broken Public Assets</h3>
+
+        <p>
+            Report damaged benches, bus stops,
+            signboards, parks or other
+            public infrastructure.
+        </p>
+
+        <button class="raise-button"
+                onclick="selectCategory('Broken Public Assets')">
+            Raise Complaint&nbsp;&nbsp; →
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 7 -->
+<div class="complaint-card">
+
+    <img class="card-image"
+         src="images/unsafe-spaces.jpg"
+         alt="Unsafe public space">
+
+    <div class="card-content">
+
+        <h3>Unsafe Public Spaces</h3>
+
+        <p>
+            Report poor lighting, security
+            concerns, or unsafe areas.
+        </p>
+
+        <button class="raise-button"
+                onclick="selectCategory('Unsafe Public Spaces')">
+            Raise Complaint&nbsp;&nbsp; →
+        </button>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<footer>
+
+    <span class="heart">♥</span>
+
+    <span>Cleaner Cities</span>
+
+    <span>|</span>
+
+    <span>Safer Communities</span>
+
+    <span>|</span>
+
+    <strong>Stronger India</strong>
+
+</footer>
+
+
+<script>
+
+document
+    .getElementById("logoutButton")
+    .addEventListener("click", function(){
+
+        localStorage.removeItem("citizenLoggedIn");
+        localStorage.removeItem("currentCitizenId");
+        localStorage.removeItem("currentCitizenName");
+
+        window.location.href = "login.html";
+
+    });
+
+function selectCategory(category){
+
+    /*
+      Save the selected category so the complaint
+      form can use it later.
+    */
+
+    localStorage.setItem(
+        "selectedCategory",
+        category
+    );
+
+    /*
+      Your actual complaint form will be connected here.
+      For now, this opens complaint-form.html if it exists.
+    */
+
+    window.location.href =
+        "complaint-form.html";
+
+}
+
+</script>
+
+</body>
+</html>

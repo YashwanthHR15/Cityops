@@ -1,0 +1,890 @@
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f4f8fc;
+
+    color: #071d49;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+
+    height: 90px;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    border-bottom: 1px solid #e5eaf1;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+}
+
+
+/* BRAND */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+.emblem {
+
+    width: 48px;
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 34px;
+
+}
+
+
+.brand h1 {
+
+    font-size: 24px;
+
+    color: #071d49;
+
+    margin-bottom: 3px;
+
+}
+
+
+.brand p {
+
+    font-size: 13px;
+
+    color: #557093;
+
+}
+
+
+/* NAV */
+
+nav {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+nav a {
+
+    text-decoration: none;
+
+    color: #071d49;
+
+    font-weight: 600;
+
+    padding: 14px 20px;
+
+    border-radius: 12px;
+
+    transition: 0.2s;
+
+}
+
+
+.logout-button {
+
+    border: none;
+
+    background: transparent;
+
+    color: #071d49;
+
+    font: inherit;
+
+    font-weight: 600;
+
+    padding: 14px 20px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.logout-button:hover {
+
+    background: #fff0f0;
+
+    color: #c53030;
+
+}
+
+
+nav a:hover {
+
+    background: #edf5ff;
+
+}
+
+
+nav a.active {
+
+    background: #0866d8;
+
+    color: white;
+
+    box-shadow:
+        0 5px 15px rgba(8, 102, 216, 0.25);
+
+}
+
+
+.profile {
+
+    width: 46px;
+
+    height: 46px;
+
+    border-radius: 50%;
+
+    background: #eef5fb;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-left: 10px;
+
+    font-size: 20px;
+
+}
+
+
+/* =====================================================
+   HOME HERO
+===================================================== */
+
+.home-hero {
+
+    min-height: 390px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+
+        linear-gradient(
+            rgba(235, 245, 255, 0.93),
+            rgba(245, 250, 255, 0.97)
+        );
+
+    padding: 60px 20px;
+
+}
+
+
+.hero-content {
+
+    max-width: 800px;
+
+}
+
+
+.small-title {
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+
+    font-weight: 700;
+
+    color: #0866d8;
+
+    margin-bottom: 15px;
+
+}
+
+
+.hero-content h2 {
+
+    font-size: 48px;
+
+    line-height: 1.1;
+
+    margin-bottom: 20px;
+
+}
+
+
+.hero-content > p:not(.small-title) {
+
+    font-size: 18px;
+
+    color: #536b89;
+
+    line-height: 1.7;
+
+}
+
+
+.hero-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 30px;
+
+}
+
+
+.primary-btn,
+.secondary-btn {
+
+    padding: 15px 27px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+}
+
+
+.primary-btn {
+
+    background: #0866d8;
+
+    color: white;
+
+}
+
+
+.secondary-btn {
+
+    background: white;
+
+    color: #0866d8;
+
+    border: 1px solid #d5e2f0;
+
+}
+
+
+/* =====================================================
+   SECTION HEADINGS
+===================================================== */
+
+.section-heading {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+
+}
+
+
+.section-heading h2 {
+
+    font-size: 32px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.section-heading p {
+
+    color: #607793;
+
+    font-size: 16px;
+
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+.statistics {
+
+    padding: 70px 6%;
+
+    background: white;
+
+}
+
+
+.stats-grid {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 22px;
+
+}
+
+
+.stat-card {
+
+    background: #f8fbff;
+
+    border: 1px solid #e0eaf5;
+
+    border-radius: 18px;
+
+    padding: 30px 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(35, 75, 120, 0.06);
+
+}
+
+
+.stat-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    border-radius: 15px;
+
+    background: #e5f1ff;
+
+    color: #0866d8;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    flex-shrink: 0;
+
+}
+
+
+.stat-icon.resolved {
+
+    background: #e6f8ed;
+
+    color: #169447;
+
+}
+
+
+.stat-icon.progress {
+
+    background: #fff5df;
+
+    color: #d58a00;
+
+}
+
+
+.stat-icon.pending {
+
+    background: #ffecec;
+
+    color: #d93434;
+
+}
+
+
+.stat-card h3 {
+
+    font-size: 30px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.stat-card p {
+
+    color: #647a95;
+
+    font-size: 14px;
+
+}
+
+
+/* =====================================================
+   HOW IT WORKS
+===================================================== */
+
+.how-section {
+
+    padding: 70px 6%;
+
+}
+
+
+.steps {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+
+}
+
+
+.step {
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    border: 1px solid #e1eaf3;
+
+}
+
+
+.step span {
+
+    font-size: 14px;
+
+    color: #0866d8;
+
+    font-weight: bold;
+
+}
+
+
+.step h3 {
+
+    font-size: 22px;
+
+    margin: 15px 0 10px;
+
+}
+
+
+.step p {
+
+    color: #607793;
+
+    line-height: 1.6;
+
+}
+
+
+/* =====================================================
+   COMPLAINT PAGE HEADING
+===================================================== */
+
+.complaint-heading {
+
+    text-align: center;
+
+    padding: 50px 20px 25px;
+
+}
+
+
+.complaint-heading h2 {
+
+    font-size: 34px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.complaint-heading p {
+
+    color: #5d7593;
+
+    font-size: 17px;
+
+}
+
+
+/* =====================================================
+   CATEGORY GRID
+===================================================== */
+
+.category-container {
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 20px 25px 70px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 22px;
+
+}
+
+
+/* =====================================================
+   CATEGORY CARD
+===================================================== */
+
+.category-card {
+
+    background: white;
+
+    border: 1px solid #dfe8f1;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 25px rgba(40, 75, 110, 0.07);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+
+}
+
+
+.category-card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(40, 75, 110, 0.13);
+
+}
+
+
+/* IMAGE */
+
+.category-image {
+
+    padding: 14px;
+
+}
+
+
+.category-image img {
+
+    width: 100%;
+
+    height: 180px;
+
+    object-fit: cover;
+
+    border-radius: 17px;
+
+    display: block;
+
+}
+
+
+/* CONTENT */
+
+.category-content {
+
+    padding: 5px 18px 18px;
+
+    text-align: center;
+
+}
+
+
+.category-content h3 {
+
+    font-size: 20px;
+
+    margin: 12px 0 10px;
+
+    color: #071d49;
+
+}
+
+
+.category-content p {
+
+    color: #607793;
+
+    line-height: 1.5;
+
+    min-height: 68px;
+
+    font-size: 14px;
+
+}
+
+
+/* BUTTON */
+
+.category-content button {
+
+    width: 100%;
+
+    border: none;
+
+    background: #e6f1ff;
+
+    color: #005acb;
+
+    padding: 13px;
+
+    border-radius: 11px;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.category-content button:hover {
+
+    background: #0866d8;
+
+    color: white;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    background: #071d49;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 25px;
+
+    line-height: 1.8;
+
+    font-size: 14px;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .stats-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .category-container {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .steps {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .header {
+
+        height: auto;
+
+        padding: 15px;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+    }
+
+
+    nav {
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+    }
+
+
+    nav a {
+
+        padding: 9px 12px;
+
+        font-size: 13px;
+
+    }
+
+
+    .logout-button {
+
+        padding: 9px 12px;
+
+        font-size: 13px;
+
+    }
+
+
+    .hero-content h2 {
+
+        font-size: 35px;
+
+    }
+
+
+    .hero-buttons {
+
+        flex-direction: column;
+
+    }
+
+
+    .stats-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .category-container {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+/* =====================================================
+   INDIA FLAG - HOME PAGE BACKGROUND ONLY
+   Does NOT affect buttons, cards, navigation or content
+   ===================================================== */
+
+.india-flag-bg {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.62),
+            rgba(255, 255, 255, 0.62)
+        ),
+        url("./assests/india-flag.png");
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    opacity: 0.30;
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Keep the existing website above the flag */
+body > *:not(.india-flag-bg) {
+    position: relative;
+    z-index: 1;
+}

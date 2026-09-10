@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administrator Login | Indian Government</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f8fd;
+    color: #102d5c;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: white;
+    border-bottom: 1px solid #dce6f2;
+    padding: 20px 6%;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: #102d5c;
+}
+
+.emblem {
+    font-size: 38px;
+}
+
+.brand h1 {
+    font-size: 23px;
+}
+
+.brand p {
+    color: #56708f;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.login-area {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    border: 1px solid #dce6f2;
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow: 0 15px 40px rgba(30, 70, 110, 0.10);
+}
+
+.login-title {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.login-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: #e8f2fd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+}
+
+.login-title h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.login-title p {
+    color: #607895;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #cbd9e9;
+    border-radius: 9px;
+    background: #fbfdff;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #1269d5;
+}
+
+.login-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 9px;
+    background: #17365f;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background: #102b4e;
+}
+
+.message {
+    display: none;
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.message.error {
+    display: block;
+    background: #fff0f0;
+    color: #c53030;
+}
+
+.back-link {
+    display: block;
+    margin-top: 20px;
+    color: #607895;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-link:hover {
+    color: #1269d5;
+}
+
+footer {
+    background: #082453;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
+</style>
+</head>
+<body>
+<header>
+    <a href="index.html" class="brand">
+        <div class="emblem">🇮🇳</div>
+        <div>
+            <h1>Indian Government</h1>
+            <p>Citizens First • Cleaner Cities • Stronger India</p>
+        </div>
+    </a>
+</header>
+
+<main class="login-area">
+    <div class="login-card">
+        <div class="login-title">
+            <div class="login-icon">🔐</div>
+            <h2>Administrator Login</h2>
+            <p>Sign in to manage citizen complaints.</p>
+        </div>
+
+        <form id="adminLoginForm">
+            <div class="form-group">
+                <label for="adminUsername">Username</label>
+                <input type="text" id="adminUsername" placeholder="Enter username" autocomplete="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="adminPassword">Password</label>
+                <input type="password" id="adminPassword" placeholder="Enter password" autocomplete="current-password" required>
+            </div>
+
+            <button type="submit" class="login-button">LOGIN</button>
+            <div id="message" class="message"></div>
+        </form>
+
+        <a href="login.html" class="back-link">Back to Citizen Login</a>
+    </div>
+</main>
+
+<footer>♥ Cleaner Cities | Safer Communities | <strong>Stronger India</strong></footer>
+
+<script>
+document.getElementById("adminLoginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById("adminUsername").value.trim();
+    const password = document.getElementById("adminPassword").value;
+    const message = document.getElementById("message");
+
+    if (username !== "admin" || password !== "admin123") {
+        message.textContent = "Invalid administrator username or password.";
+        message.className = "message error";
+        return;
+    }
+
+    localStorage.setItem("adminLoggedIn", "true");
+    window.location.href = "admin.html";
+});
+</script>
+</body>
+</html>
