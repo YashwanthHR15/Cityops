@@ -8,7 +8,7 @@
    helpers below instead of hardcoding fetch() calls.
    ============================================================ */
 
-const API_BASE = "https://REPLACE-WITH-BACKEND-URL"; // e.g. https://api.bbmp-seva.app
+const API_BASE = "https://cityops-1.onrender.com"; // e.g. https://api.bbmp-seva.app
 
 /**
  * Generic JSON fetch wrapper with a timeout, so a slow/dead
